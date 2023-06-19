@@ -1,5 +1,5 @@
 import { ConfigProvider } from 'antd'
-import VaultPage from './pages/vaults/VaultPage'
+import VaultPage from './pages/vaults'
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
           fontFamily: 'Samsung Sharp Sans, sans-serif',
           colorTextBase: '#221533',
           colorBgContainer: 'rgba(255, 255, 255, 0.3)',
+          colorLink: '#5d5fef',
         },
       }}
     >

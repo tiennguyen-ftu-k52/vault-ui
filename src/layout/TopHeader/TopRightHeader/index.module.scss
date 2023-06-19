@@ -13,8 +13,8 @@
 .button {
   display: inline-flex !important;
 
-  &:hover {
-    color: $color-light;
+  svg {
+    margin-top: 1px;
   }
 }
 

@@ -1,7 +1,7 @@
 import { Clock, Setting2 } from 'iconsax-react'
 import ButtonIcon from '../../../components/ButtonIcon'
 import PrimaryButton from '../../../components/PrimaryButton'
-import arrowDownIcon from '../../../assets/icons/arrow-down.svg'
+import { ReactComponent as ArrowDownIcon } from '../../../assets/icons/arrow-down.svg'
 import styles from './index.module.scss'
 
 function TopRightHeader() {
@@ -17,11 +17,7 @@ function TopRightHeader() {
         <PrimaryButton>
           <span className={styles.button}>
             <span className={styles.buttonText}>Connect Wallet</span>
-            <img
-              className={styles.buttonIcon}
-              src={arrowDownIcon}
-              alt="arrow down"
-            />
+            <ArrowDownIcon />
           </span>
         </PrimaryButton>
       </div>
