@@ -7,8 +7,8 @@ import { ReactComponent as StatisticIconDefault } from '../../assets/icons/stati
 import { ReactComponent as StatisticIconActive } from '../../assets/icons/statistic-active.svg'
 import { ReactComponent as NftIconDefault } from '../../assets/icons/nft.svg'
 import { ReactComponent as NftIconActive } from '../../assets/icons/nft-active.svg'
-import styles from './SideBarMenu.module.scss'
 import SideBarMenuItem from './SideBarMenuItem'
+import styles from './SideBarMenu.module.scss'
 
 const items = [
   {

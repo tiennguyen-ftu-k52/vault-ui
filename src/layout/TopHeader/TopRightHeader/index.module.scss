@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item {
+  margin-left: 8px;
+}
+
+.button {
+  display: inline-flex !important;
+
+  &:hover {
+    color: $color-light;
+  }
+}
+
+.buttonText {
+  margin-right: 8px;
+}

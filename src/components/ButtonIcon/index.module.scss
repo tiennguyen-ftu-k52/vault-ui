@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.buttonIcon {
+  background-color: $color-light;
+  border: none;
+  border-radius: 12px;
+  width: 36px !important;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

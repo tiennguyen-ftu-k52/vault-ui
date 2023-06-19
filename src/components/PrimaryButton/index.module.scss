@@ -1,0 +1,12 @@
+@import '../../styles/variables';
+
+.primaryButton {
+  background-color: $color-dark;
+  box-shadow: none;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  border-radius: 12px;
+  color: $color-light;
+  height: 36px;
+}

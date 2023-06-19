@@ -2,6 +2,7 @@ import React from 'react'
 import { Layout as AntLayout } from 'antd'
 import SideBar from './SideBar'
 import styles from './index.module.scss'
+import TopHeader from './TopHeader'
 
 const { Content } = AntLayout
 
@@ -14,6 +15,7 @@ function Layout({ children }: Props) {
     <AntLayout className={styles.layout}>
       <SideBar />
       <AntLayout>
+        <TopHeader />
         <Content className={styles.content}>{children}</Content>
       </AntLayout>
     </AntLayout>
