@@ -1,0 +1,132 @@
+$color-dark: #221533;
+$color-iris-100: #5d5fef;
+$color-blue-bg: #f1f1ff;
+
+$font-size-xxs: 8px;
+$font-size-xs: 10px;
+$font-size-s: 12px;
+$font-size-m: 13px;
+$font-size: 14px;
+$font-size-l: 16px;
+$font-size-xl: 18px;
+$font-size-xxl: 24px;
+$font-size-xxxl: 32px;
+
+$border-radius: 2px;
+$border-radius-l: 4px;
+$border-radius-l2: 6px;
+$border-radius-l3: 8px;
+
+$border-color: #f0f0f0;
+
+$space-xxxs: 1px;
+$space-xxs: 2px;
+$space-xs: 4px;
+$space-s: 8px;
+$space-m: 12px;
+$space-l: 16px;
+$space-l2: 20px;
+$space-l3: 24px;
+$space-xl: 32px;
+$space-xxl: 64px;
+
+$header-height: 64px;
+$header-height-mobile: 46px;
+
+/* Breakpoints */
+$breakpoint-xsmall: 480px;
+$breakpoint-small: 600px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 992px;
+$breakpoint-xlarge: 1200px;
+$breakpoint-content-max: 1366px;
+
+$breakpoints: (
+  xsmall down:
+    (
+      max-width: $breakpoint-xsmall - 1,
+    ),
+  xsmall up:
+    (
+      min-width: $breakpoint-xsmall,
+    ),
+  small down:
+    (
+      max-width: $breakpoint-small - 1,
+    ),
+  small up:
+    (
+      min-width: $breakpoint-small,
+    ),
+  medium down:
+    (
+      max-width: $breakpoint-medium - 1,
+    ),
+  medium up:
+    (
+      min-width: $breakpoint-medium,
+    ),
+  large down:
+    (
+      max-width: $breakpoint-large - 1,
+    ),
+  large up:
+    (
+      min-width: $breakpoint-large,
+    ),
+  xlarge down:
+    (
+      max-width: $breakpoint-xlarge - 1,
+    ),
+  xlarge up:
+    (
+      min-width: $breakpoint-xlarge,
+    ),
+  content max:
+    (
+      min-width: $breakpoint-content-max,
+    )
+);
+
+$container-max-width: 1376px;
+
+$menu-bg: #d22029;
+$sub-menu-bg: #001529;
+$sidebar-menu-width: 240px;
+$sidebar-menu-width-mobile: 200px;
+
+$button-height: 40px;
+$button-height-l: 50px;
+$butotn-height-l2: 60px;
+
+$button-border-radius: 20px;
+
+$border-color: #d1d1d1;
+
+$right-panel-width: 320px;
+$right-panel-width-ipad: 280px;
+
+$sport-header-height: 32px;
+
+$icon-color: rgb(0 0 0 / 45%);
+
+$button-icon-width: 32px;
+
+$menu-border-color: #f0f0f0;
+
+$starter-color: rgb(245 198 34);
+
+$avatar-size: 26px;
+
+$collapse-border-color: #d9d9d9;
+
+$account-menu-width: 400px;
+
+$mobile-match-name-width: 150px;
+$mobile-row-height: 40px;
+$mobile-row-height-last-row: 28px;
+
+$box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
+  0 9px 28px 8px rgb(0 0 0 / 5%);
+
+$login-width: 400px;

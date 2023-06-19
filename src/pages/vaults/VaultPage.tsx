@@ -1,6 +1,8 @@
+import Layout from '../../layout'
+
 function VaultPage() {
   return (
-    <>
+    <Layout>
       <h1>Vault</h1>
       <div className="card">
         <p>
@@ -10,7 +12,7 @@ function VaultPage() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-    </>
+    </Layout>
   )
 }
 
