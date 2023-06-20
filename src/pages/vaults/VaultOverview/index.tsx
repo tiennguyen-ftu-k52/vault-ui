@@ -4,6 +4,7 @@ import cs from 'classnames'
 import vaultGraph from '../../../assets/images/vault-graph.svg'
 import styles from './index.module.scss'
 import PrimaryButton from '../../../components/PrimaryButton'
+import YourRequest from './YourRequest'
 
 const TAB_ITEMS = [
   {
@@ -78,6 +79,8 @@ function VaultOverview() {
           </Col>
         </Row>
       </div>
+
+      <YourRequest />
     </div>
   )
 }

@@ -1,0 +1,33 @@
+@import '../../../../styles/variables.scss';
+
+.table {
+  :global {
+    .ant-table-thead > tr > th {
+      background-color: transparent !important;
+      padding: 8px 4px;
+    }
+
+    .ant-table-cell:before {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.titleContainer {
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  background: $color-black-bg;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.titleText {
+  font-size: 10px;
+  line-height: 13px;
+}
