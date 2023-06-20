@@ -1,4 +1,5 @@
 import Layout from '../../layout'
+import OrderBox from './OrderBox'
 import VaultOverview from './VaultOverview'
 import VaultStats from './VaultStats'
 import styles from './index.module.scss'
@@ -7,11 +8,15 @@ function VaultPage() {
   return (
     <Layout>
       <div className={styles.container}>
-        <div className={styles.overviewContainer}>
-          <VaultOverview />
+        <div className={styles.leftContainer}>
+          <div className={styles.overviewContainer}>
+            <VaultOverview />
+            <VaultStats />
+          </div>
         </div>
-        <div>
-          <VaultStats />
+
+        <div className={styles.rightContainer}>
+          <OrderBox />
         </div>
       </div>
     </Layout>

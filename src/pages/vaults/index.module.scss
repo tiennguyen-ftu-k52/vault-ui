@@ -3,9 +3,21 @@
 .container {
   display: flex;
   flex-direction: row;
+}
+
+.leftContainer {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+  display: flex;
+  flex: 1;
   background: rgba(255, 255, 255, 0.6);
 }
 
 .overviewContainer {
+  display: flex;
   flex: 1;
+}
+
+.rightContainer {
+  margin-left: 24px;
 }

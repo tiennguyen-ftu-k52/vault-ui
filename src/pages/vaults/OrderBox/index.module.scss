@@ -1,0 +1,74 @@
+@import '../../../styles/variables.scss';
+
+.actionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  width: 360px;
+  background-color: rgba(253, 253, 255, 0.6);
+  border-radius: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  width: 100%;
+}
+
+.leftTabs {
+  flex: 1;
+}
+
+.tab {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: $color-black-disabled;
+
+  &.tabActive {
+    color: $color-iris-100;
+  }
+}
+
+.refreshButton {
+  width: 20px;
+  height: 20px;
+}
+
+.refreshIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.boxContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 24px;
+  background: $color-light;
+  border-radius: 16px;
+  width: 100%;
+}
+
+.boxTitle {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-black-disabled;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 0px 24px;
+  width: 360px;
+  background: $color-light;
+  border: 1px solid $color-light;
+  border-radius: 16px;
+}
