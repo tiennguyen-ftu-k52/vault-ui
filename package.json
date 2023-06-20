@@ -12,12 +12,16 @@
   },
   "dependencies": {
     "@multiversx/sdk-dapp": "^2.15.0",
+    "@types/numeral": "^2.0.2",
     "antd": "^5.6.2",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "dayjs": "^1.11.8",
     "iconsax-react": "^0.0.8",
+    "numeral": "^2.0.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-query": "^3.39.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

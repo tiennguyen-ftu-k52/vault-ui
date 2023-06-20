@@ -1,9 +1,6 @@
 @import '../../../../styles/variables';
 
 .container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   background-color: $color-blue-bg;
   border-radius: 16px;
   padding: 16px 24px;
