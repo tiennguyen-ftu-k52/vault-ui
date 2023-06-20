@@ -15,7 +15,7 @@
   font-size: 12px;
   line-height: 15px;
   margin-right: 4px;
-  color: $color-dark;
+  color: $color-black-default;
 
   &:last-of-type {
     margin-right: 0;
@@ -24,7 +24,7 @@
   &:hover,
   &:focus,
   &:active {
-    color: $color-dark;
+    color: $color-black-default;
   }
 }
 

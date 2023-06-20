@@ -1,5 +1,5 @@
 import cs from 'classnames'
-import styles from './SideBarMenuItem.module.scss'
+import styles from './MenuItem.module.scss'
 
 interface Props {
   id: string

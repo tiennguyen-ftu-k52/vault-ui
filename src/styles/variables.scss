@@ -1,10 +1,10 @@
-$color-light: #fff;
-$color-dark: #221533;
+$color-white-pure: #ffffff;
+$color-black-default: #221533;
+$color-black-disabled: #868098;
 $color-iris-100: #5d5fef;
+$color-green-pure: #05c9a1;
 $color-blue-bg: #f1f1ff;
 $color-main-bg: rgba(248, 248, 255, 0.8);
-$color-black-disabled: #868098;
-$color-green-pure: #05c9a1;
 $color-black-bg: #f2f1f5;
 
 $font-size-xxs: 8px;
@@ -21,8 +21,6 @@ $border-radius: 2px;
 $border-radius-l: 4px;
 $border-radius-l2: 6px;
 $border-radius-l3: 8px;
-
-$border-color: #f0f0f0;
 
 $space-xxxs: 1px;
 $space-xxs: 2px;
@@ -95,43 +93,4 @@ $breakpoints: (
 
 $container-max-width: 1376px;
 
-$menu-bg: #d22029;
-$sub-menu-bg: #001529;
-$sidebar-menu-width: 240px;
-$sidebar-menu-width-mobile: 200px;
-
-$button-height: 40px;
-$button-height-l: 50px;
-$butotn-height-l2: 60px;
-
-$button-border-radius: 20px;
-
-$border-color: #d1d1d1;
-
-$right-panel-width: 320px;
-$right-panel-width-ipad: 280px;
-
-$sport-header-height: 32px;
-
-$icon-color: rgb(0 0 0 / 45%);
-
-$button-icon-width: 32px;
-
-$menu-border-color: #f0f0f0;
-
-$starter-color: rgb(245 198 34);
-
-$avatar-size: 26px;
-
-$collapse-border-color: #d9d9d9;
-
-$account-menu-width: 400px;
-
-$mobile-match-name-width: 150px;
-$mobile-row-height: 40px;
-$mobile-row-height-last-row: 28px;
-
-$box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-  0 9px 28px 8px rgb(0 0 0 / 5%);
-
-$login-width: 400px;
+$transition-duration: 0.3s;

@@ -1,23 +1,20 @@
-import { Layout, theme } from 'antd'
+import { Affix, Layout } from 'antd'
 import Logo from './Logo'
-import SideBarMenu from './SideBarMenu'
+import Menu from './Menu'
+import styles from './index.module.scss'
 
 const { Sider } = Layout
 
-function SideBar() {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken()
+const SIDER_WIDTH = 74
 
+function SideBar() {
   return (
-    <Sider
-      collapsed
-      collapsedWidth={74}
-      style={{ backgroundColor: colorBgContainer, border: '1px solid #fff' }}
-    >
-      <Logo />
-      <SideBarMenu />
-    </Sider>
+    <Affix>
+      <Sider collapsed collapsedWidth={SIDER_WIDTH} className={styles.sider}>
+        <Logo />
+        <Menu />
+      </Sider>
+    </Affix>
   )
 }
 
