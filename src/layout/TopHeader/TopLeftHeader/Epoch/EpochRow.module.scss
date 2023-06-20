@@ -1,0 +1,33 @@
+@import '../../../../styles/variables';
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 24px;
+  height: 40px;
+}
+
+.inner {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+.label {
+  font-size: 10px;
+  color: $color-black-disabled;
+  margin-right: 4px;
+}
+
+.importantValue {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-iris-100;
+  margin-right: 4px;
+}
+
+.value {
+  font-size: 12px;
+}

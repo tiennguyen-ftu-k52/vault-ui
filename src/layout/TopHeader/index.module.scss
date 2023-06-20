@@ -1,0 +1,13 @@
+@import '../../styles/variables.scss';
+
+.header {
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-main-bg;
+  padding: 0 22px;
+  height: 88px;
+}

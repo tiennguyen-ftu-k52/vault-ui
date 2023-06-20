@@ -1,13 +1,13 @@
+import { Space } from 'antd'
 import Epoch from './Epoch'
 import Heading from './Heading'
-import styles from './index.module.scss'
 
 function TopLeftHeader() {
   return (
-    <div className={styles.container}>
+    <Space size={30} align="center">
       <Heading />
       <Epoch />
-    </div>
+    </Space>
   )
 }
 
