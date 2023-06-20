@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  display: flex;
+  width: 25%;
+  background-color: $color-blue-bg;
+  border-radius: 1px;
+  height: 8px;
+  margin-right: 2px;
+
+  &:last-of-type {
+    margin-right: 0px;
+  }
+
+  &.sectionActive {
+    background-color: $color-iris-100;
+  }
+}

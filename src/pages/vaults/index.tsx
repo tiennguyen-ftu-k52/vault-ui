@@ -9,9 +9,11 @@ function VaultPage() {
     <Layout>
       <div className={styles.container}>
         <div className={styles.leftContainer}>
-          <div className={styles.overviewContainer}>
-            <VaultOverview />
-            <VaultStats />
+          <div className={styles.leftInnerContainer}>
+            <div className={styles.overviewContainer}>
+              <VaultOverview />
+              <VaultStats />
+            </div>
           </div>
         </div>
 

@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.select {
+  padding: 0;
+
+  :global {
+    .ant-select-arrow {
+      top: 36%;
+    }
+  }
+}
+
+.suffixIcon {
+  fill: $color-dark;
+}
+
+.displayToken {
+  margin-right: 16px;
+}

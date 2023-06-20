@@ -1,7 +1,7 @@
 import { Clock, Setting2 } from 'iconsax-react'
 import ButtonIcon from '../../../components/ButtonIcon'
 import PrimaryButton from '../../../components/PrimaryButton'
-import { ReactComponent as ArrowDownIcon } from '../../../assets/icons/arrow-down.svg'
+import { ReactComponent as ArrowDownIcon } from '../../../assets/icons/arrow-down-white.svg'
 import styles from './index.module.scss'
 
 function TopRightHeader() {

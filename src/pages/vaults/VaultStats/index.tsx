@@ -1,5 +1,5 @@
 import { ReactComponent as TokenHeadGray } from '../../../assets/icons/token-head-gray.svg'
-import { ReactComponent as TokenHeadColor } from '../../../assets/icons/token-head-color.svg'
+import TokenHeadColor from '../../../assets/icons/token-head-color.png'
 import styles from './index.module.scss'
 
 function VaultStats() {
@@ -27,7 +27,7 @@ function VaultStats() {
         <div className={styles.row}>
           <div className={styles.label}>Total value (DAI)</div>
           <div className={styles.value}>
-            <TokenHeadColor className={styles.valueIcon} />
+            <img src={TokenHeadColor} className={styles.valueIcon} />
             <span className={styles.valueText}>392,182.92</span>
           </div>
         </div>
@@ -35,7 +35,7 @@ function VaultStats() {
         <div className={styles.row}>
           <div className={styles.label}>Est. Earnings (DAI)</div>
           <div className={styles.value}>
-            <TokenHeadColor className={styles.valueIcon} />
+            <img src={TokenHeadColor} className={styles.valueIcon} />
             <span className={styles.valueText}>182.92</span>
           </div>
         </div>
