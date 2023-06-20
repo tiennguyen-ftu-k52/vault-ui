@@ -1,6 +1,6 @@
 import Layout from '../../layout'
 import OrderBox from './OrderBox'
-import VaultOverview from './VaultOverview'
+import VaultOverview from './VaultTabs'
 import VaultStats from './VaultStats'
 import styles from './index.module.scss'
 

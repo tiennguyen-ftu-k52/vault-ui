@@ -21,6 +21,7 @@ function Epoch() {
   const { data: stats, refetch } = useQuery<Stats>({
     queryKey: ['stats', apiAddress],
     queryFn: () => getStats(apiAddress),
+    enabled: !!apiAddress,
   })
 
   function getEpochValues(stats: Stats | undefined) {
