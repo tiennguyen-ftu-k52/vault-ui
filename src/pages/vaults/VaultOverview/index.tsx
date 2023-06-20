@@ -3,7 +3,7 @@ import { Col, Row, Space } from 'antd'
 import cs from 'classnames'
 import vaultGraph from '../../../assets/images/vault-graph.svg'
 import styles from './index.module.scss'
-import PrimaryButton from '../../../components/PrimaryButton'
+import ButtonPrimary from '../../../components/ButtonPrimary'
 import YourRequest from './YourRequest'
 
 const TAB_ITEMS = [
@@ -50,7 +50,7 @@ function VaultOverview() {
             <br />
             APR
           </div>
-          <PrimaryButton className={styles.button}>DEPOSIT</PrimaryButton>
+          <ButtonPrimary className={styles.button}>DEPOSIT</ButtonPrimary>
         </Col>
         <Col xs={24} md={12}>
           <img src={vaultGraph} alt="vault graph" />

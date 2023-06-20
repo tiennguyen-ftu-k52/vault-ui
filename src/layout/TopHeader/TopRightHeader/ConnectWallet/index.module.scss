@@ -1,0 +1,18 @@
+@import '../../../../styles/variables';
+
+.button {
+  display: inline-flex !important;
+
+  svg {
+    margin-top: 1px;
+  }
+}
+
+.buttonText {
+  margin-right: 8px;
+}
+
+.dropdownItem {
+  font-size: 12px;
+  color: $color-black-disabled;
+}
