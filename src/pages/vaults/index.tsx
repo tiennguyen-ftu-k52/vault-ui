@@ -1,5 +1,5 @@
 import Layout from '../../layout'
-import OrderBox from './OrderBox'
+import OrderBox from './TokenActions'
 import VaultOverview from './VaultTabs'
 import YourStats from './YourStats'
 import styles from './index.module.scss'

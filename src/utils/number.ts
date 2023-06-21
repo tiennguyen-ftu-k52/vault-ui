@@ -19,3 +19,7 @@ export function formatNumber(value: number) {
 export function formatPercentage(value: number) {
   return `${formatNumber(value)}%`
 }
+
+export function formatCurrency(value: number) {
+  return `$${formatNumber(value)}`
+}

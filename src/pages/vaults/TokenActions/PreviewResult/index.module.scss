@@ -1,0 +1,58 @@
+@import '../../../../styles/variables.scss';
+
+.previewContainer {
+  margin-bottom: 24px;
+}
+
+.receiveBoxTitle {
+  margin-left: 0;
+}
+
+.previewResult {
+  font-size: 24px;
+  line-height: 30px;
+  text-align: right;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: $color-black-disabled;
+}
+
+.boxTitle {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-black-disabled;
+  margin-bottom: 8px;
+}
+
+.boxSubtitle {
+  margin-left: -16px;
+}
+
+.rightInputBox {
+  flex: 1;
+  text-align: right;
+  margin-left: 20px;
+}
+
+.select {
+  width: 100%;
+}
+
+.balance {
+  margin-top: 8px;
+}
+
+.balanceLabel {
+  font-size: 10px;
+  line-height: 13px;
+  color: $color-black-disabled;
+}
+
+.balanceValue {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.percentageContainer {
+  margin-bottom: 24px;
+}

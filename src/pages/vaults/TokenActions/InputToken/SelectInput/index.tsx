@@ -1,8 +1,8 @@
 import { Select, SelectProps } from 'antd'
-import { ReactComponent as ArrowDownIcon } from '../../assets/icons/arrow-down.svg'
-import TokenHeadColorIcon from '../../assets/icons/token-head-color.png'
+import { ReactComponent as ArrowDownIcon } from '../../../../../assets/icons/arrow-down.svg'
+import TokenHeadColorIcon from '../../../../../assets/icons/token-head-color.png'
 import styles from './index.module.scss'
-import DisplayToken from '../DisplayToken'
+import DisplayToken from '../../DisplayToken'
 
 const OPTIONS = [
   {

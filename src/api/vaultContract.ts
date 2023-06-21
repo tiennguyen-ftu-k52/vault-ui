@@ -3,12 +3,13 @@ import {
   Address,
   ResultsParser,
   SmartContract,
+  TokenTransfer,
 } from '@multiversx/sdk-core'
 import { sendTransactions } from '@multiversx/sdk-dapp/services/transactions'
 import { ProxyNetworkProvider } from '@multiversx/sdk-network-providers'
 import abiJson from '../assets/vault.abi.json'
 import { CONTRACT_ADDRESS, GAS_LIMIT, NETWORK_ENV } from '../constants/network'
-import { BIGINT_UNIT } from '../constants/contract'
+import { ASSET_TOKEN, BIGINT_UNIT } from '../constants/contract'
 
 const vaultContract = createVaultContract()
 const networkProvider = createNetworkProvider()
@@ -40,24 +41,33 @@ function createNetworkProvider() {
   )
 }
 
-export async function deposit() {
+interface DepositParams {
+  amount: number
+  address: string
+}
+
+export async function deposit({ amount, address }: DepositParams) {
+  const transfer = TokenTransfer.fungibleFromAmount(
+    ASSET_TOKEN,
+    (amount * BIGINT_UNIT) / 100,
+    2,
+  )
   const transaction = vaultContract.methods
     .deposit([])
-    .withSender(
-      new Address(
-        'erd1suc25swsqv5mtrg4st8xmrv4z39mfqfa7cj3svww3kwl6dqs9m8s9c68lt',
-      ),
-    )
+    .withSingleESDTTransfer(transfer)
+    .withSender(new Address(address))
     .withGasLimit(GAS_LIMIT)
-    .withValue(2)
     .withChainID('D')
     .buildTransaction()
 
-  const result = await sendTransactions({
-    transactions: [transaction],
-  })
-
-  console.log(result)
+  try {
+    const { error } = await sendTransactions({
+      transactions: [transaction],
+    })
+    return !error
+  } catch (error) {
+    return false
+  }
 }
 
 function createVaultContract() {

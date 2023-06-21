@@ -1,0 +1,52 @@
+@import '../../../../styles/variables.scss';
+
+.checkboxContainer {
+  padding: 8px;
+  border: 1px solid $color-white-pure;
+  border-radius: 8px;
+  margin-bottom: 16px;
+
+  &.checkboxContainerActive {
+    background: $color-blue-bg;
+    border: 1px solid $color-iris-100;
+  }
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: $color-black-default;
+
+  &.checkboxActive {
+    color: $color-iris-100;
+  }
+}
+
+.checkboxIcon {
+  margin-right: 8px;
+}
+
+.checkboxText {
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.discount {
+  margin-top: 16px;
+}
+
+.discountValue {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-green-pure;
+}
+
+.discountLabel {
+  font-size: 12px;
+}
+
+.durationListContainer {
+  margin-bottom: 24px;
+}
