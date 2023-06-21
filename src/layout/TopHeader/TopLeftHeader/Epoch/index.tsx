@@ -10,7 +10,7 @@ import {
   calcEpochTimeLeft,
 } from '../../../../utils/network'
 import CountDown from '../../../../components/CountDown'
-import { formatInt } from '../../../../utils/number'
+import { formatNumber } from '../../../../utils/number'
 import { Space } from 'antd'
 
 function Epoch() {
@@ -68,7 +68,7 @@ function Epoch() {
             timer
           )
         }
-        importantValue={epoch ? formatInt(epoch as number) : epoch}
+        importantValue={epoch ? formatNumber(epoch as number) : epoch}
       />
       <EpochRow label="Start" value={start} />
       <EpochRow label="End" value={end} />

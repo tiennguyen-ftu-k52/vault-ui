@@ -5,7 +5,7 @@ import vaultGraph from '../../../../../assets/images/vault-graph.svg'
 import ButtonPrimary from '../../../../../components/ButtonPrimary'
 import { getEconomics } from '../../../../../api/network'
 import { Economics } from '../../../../../interfaces/network'
-import { formatFloat } from '../../../../../utils/number'
+import { formatNumber } from '../../../../../utils/number'
 import { renderFallback } from '../../../../../utils/common'
 import styles from './index.module.scss'
 
@@ -19,7 +19,7 @@ function VaultFlow() {
     enabled: !!apiAddress,
   })
 
-  const apr = economics ? formatFloat(economics.apr * 100) : renderFallback()
+  const apr = economics ? formatNumber(economics.apr * 100) : renderFallback()
 
   return (
     <Row justify="center" align="middle">

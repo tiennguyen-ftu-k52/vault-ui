@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { convertSecondsToString } from '../../utils/dateTime'
 import styles from './index.module.scss'
+import { renderFallback } from '../../utils/common'
 
 interface Props {
   seconds: number
@@ -31,7 +32,9 @@ function CountDown({ seconds, secondsOnReset, onCountdownEnd }: Props) {
 
   const formattedTime = convertSecondsToString(remainingSeconds)
 
-  return <span className={styles.countdown}>{formattedTime}</span>
+  return (
+    <span className={styles.countdown}>{renderFallback(formattedTime)}</span>
+  )
 }
 
 export default CountDown

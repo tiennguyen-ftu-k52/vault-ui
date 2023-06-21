@@ -14,6 +14,28 @@ const vaultContract = createVaultContract()
 const networkProvider = createNetworkProvider()
 console.log(vaultContract.methods)
 
+export async function getCollatRatio() {
+  return await executeQuery('getCollateralizationP', [])
+}
+
+export async function getTotalSupply() {
+  return await executeQuery('getTotalSupply', [])
+}
+
+export async function getShareToAssetsPrice() {
+  return await executeQuery('getShareToAssetsPrice', [])
+}
+
+export async function getMaxAccPnlPerToken() {
+  return await executeQuery('getMaxAccPnlPerToken', [])
+}
+
+function createNetworkProvider() {
+  return new ProxyNetworkProvider(
+    `https://${NETWORK_ENV}-gateway.multiversx.com`,
+  )
+}
+
 export async function deposit() {
   const transaction = vaultContract.methods
     .deposit([])
@@ -34,27 +56,6 @@ export async function deposit() {
   console.log(result)
 }
 
-export async function getCollatRatio() {
-  const value = await executeQuery('getShareToAssetsPrice', [])
-  return value[0].valueOf() / BIGINT_UNIT
-}
-
-export async function getTotalRewards() {
-  const value = await executeQuery('getTotalRewards', [])
-  return value[0].valueOf() / BIGINT_UNIT
-}
-
-export async function getTotalDeposited() {
-  const value = await executeQuery('getTotalDeposited', [])
-  return value[0].valueOf() / BIGINT_UNIT
-}
-
-function createNetworkProvider() {
-  return new ProxyNetworkProvider(
-    `https://${NETWORK_ENV}-gateway.multiversx.com`,
-  )
-}
-
 function createVaultContract() {
   const vaultAbi = AbiRegistry.create(abiJson)
 
@@ -72,5 +73,5 @@ async function executeQuery(method: string, args: never[] | undefined) {
     queryResponse,
     interaction.getEndpoint(),
   )
-  return typedBundle.values
+  return typedBundle.values[0].valueOf() / BIGINT_UNIT
 }

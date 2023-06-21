@@ -1,18 +1,21 @@
 import * as numeral from 'numeral'
 
-export function formatInt(value: number, format = '0,0') {
-  return numeral(value).format(format)
-}
-
-export function formatFloat(value: number, format = '0,0.00') {
-  return numeral(value).format(format)
-}
-
-const formatter = new Intl.NumberFormat()
-export function formatBigInt(bigint: bigint) {
-  return formatter.format(bigint)
-}
-
 export function isNum(param: unknown): param is number | bigint {
   return typeof param === 'number' || typeof param === 'bigint'
+}
+
+function formatInt(value: number) {
+  return numeral(value).format('0,0')
+}
+
+function formatFloat(value: number) {
+  return numeral(value).format('0,0.00')
+}
+
+export function formatNumber(value: number) {
+  return Number.isInteger(value) ? formatInt(value) : formatFloat(value)
+}
+
+export function formatPercentage(value: number) {
+  return `${formatNumber(value)}%`
 }
