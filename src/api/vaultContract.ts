@@ -30,6 +30,10 @@ export async function getMaxAccPnlPerToken() {
   return await executeQuery('getMaxAccPnlPerToken', [])
 }
 
+export async function getAvailableAssets() {
+  return await executeQuery('getAvailableAssets', [])
+}
+
 function createNetworkProvider() {
   return new ProxyNetworkProvider(
     `https://${NETWORK_ENV}-gateway.multiversx.com`,
