@@ -1,0 +1,36 @@
+@import '../../../../styles/variables.scss';
+
+.tabContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+  width: 100%;
+}
+
+.leftTabs {
+  flex: 1;
+}
+
+.tab {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.02em;
+  color: $color-black-disabled;
+
+  &.tabActive {
+    color: $color-iris-100;
+  }
+}
+
+.refreshButton {
+  width: 20px;
+  height: 20px;
+}
+
+.refreshIcon {
+  width: 20px;
+  height: 20px;
+}

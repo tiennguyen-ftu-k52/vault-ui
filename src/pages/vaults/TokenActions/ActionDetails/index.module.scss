@@ -1,0 +1,37 @@
+@import '../../../../styles/variables.scss';
+
+.detailContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  background: $color-white-pure;
+  border: 1px solid $color-white-pure;
+  border-radius: 16px;
+}
+
+.detailHeading {
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: 0.05em;
+}
+
+.detailRow {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.detailLabel {
+  font-size: 10px;
+  line-height: 13px;
+}
+
+.detailValue {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-black-disabled;
+
+  &.detailValueActive {
+    color: $color-iris-100;
+  }
+}

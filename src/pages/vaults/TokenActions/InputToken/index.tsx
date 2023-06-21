@@ -16,11 +16,7 @@ function InputToken({ amount, assetBalance, setAmount }: Props) {
 
   return (
     <div>
-      <Row
-        className={styles.inputBoxContainer}
-        align="middle"
-        justify="space-between"
-      >
+      <Row align="middle" justify="space-between">
         <div className={styles.leftInputBox}>
           <div className={styles.boxTitle}>Deposit</div>
           <div className={styles.boxSubtitle}>

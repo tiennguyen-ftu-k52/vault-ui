@@ -25,11 +25,7 @@ function PreviewResult({ amount }: Props) {
       : undefined
 
   return (
-    <Row
-      className={styles.previewContainer}
-      align="middle"
-      justify="space-between"
-    >
+    <Row align="middle" justify="space-between">
       <div className={styles.leftInputBox}>
         <div className={styles.boxTitle}>You receive</div>
         <div className={cs(styles.boxSubTitle, styles.receiveBoxTitle)}>

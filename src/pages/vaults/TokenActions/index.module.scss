@@ -1,50 +1,11 @@
 @import '../../../styles/variables.scss';
 
-.actionContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.container {
   padding: 0px;
   width: 360px;
   background-color: rgba(253, 253, 255, 0.6);
   border-radius: 16px;
-  flex-wrap: wrap;
   margin-bottom: 8px;
-}
-
-.tabContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 24px;
-  width: 100%;
-}
-
-.leftTabs {
-  flex: 1;
-}
-
-.tab {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0.02em;
-  color: $color-black-disabled;
-
-  &.tabActive {
-    color: $color-iris-100;
-  }
-}
-
-.refreshButton {
-  width: 20px;
-  height: 20px;
-}
-
-.refreshIcon {
-  width: 20px;
-  height: 20px;
 }
 
 .boxContainer {
@@ -56,96 +17,22 @@
   width: 100%;
 }
 
+.inputBoxContainer {
+  margin-bottom: 24px;
+}
+
+.checkboxContainer {
+  margin-bottom: 16px;
+}
+
+.previewContainer {
+  margin-bottom: 24px;
+}
+
 .buttonContainer {
   margin-bottom: 24px;
 }
 
-.button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-  background-color: $color-green-pure;
-  border-radius: 10px;
-  height: 44px;
-  width: 100%;
-  color: $color-white-pure;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 23px;
-  letter-spacing: 0.05em;
-}
-
-.tipContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 16px 24px;
-  background: $color-black-bg;
-  border-radius: 16px;
-}
-
-.tipHeading {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  width: 100%;
-}
-
-.tipTitle {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.02em;
-  margin-top: 4px;
-}
-
-.tipIcon {
-  width: 20px;
-  height: 20px;
-}
-
-.tipContent {
-  font-size: 12px;
-  line-height: 140%;
-}
-
 .detailContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 24px;
-  background: $color-white-pure;
-  border: 1px solid $color-white-pure;
-  border-radius: 16px;
   margin-bottom: 24px;
-}
-
-.detailHeading {
-  font-size: 18px;
-  line-height: 23px;
-  letter-spacing: 0.05em;
-}
-
-.detailRow {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
-.detailLabel {
-  font-size: 10px;
-  line-height: 13px;
-}
-
-.detailValue {
-  font-size: 12px;
-  line-height: 15px;
-  color: $color-black-disabled;
-
-  &.detailValueActive {
-    color: $color-iris-100;
-  }
 }
