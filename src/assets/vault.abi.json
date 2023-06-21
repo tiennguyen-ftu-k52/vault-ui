@@ -1,0 +1,897 @@
+{
+  "buildInfo": {
+    "rustc": {
+      "version": "1.71.0-nightly",
+      "commitHash": "fec9adcdbc21469ef105162cc8cabf81c72d06be",
+      "commitDate": "2023-04-21",
+      "channel": "Nightly",
+      "short": "rustc 1.71.0-nightly (fec9adcdb 2023-04-21)"
+    },
+    "contractCrate": {
+      "name": "vault",
+      "version": "0.0.0"
+    },
+    "framework": {
+      "name": "multiversx-sc",
+      "version": "0.41.1"
+    }
+  },
+  "name": "VaultContract",
+  "constructor": {
+    "inputs": [
+      {
+        "name": "ash_token_id",
+        "type": "TokenIdentifier"
+      },
+      {
+        "name": "asset_token_id",
+        "type": "TokenIdentifier"
+      },
+      {
+        "name": "treasury_address",
+        "type": "Address"
+      },
+      {
+        "name": "trading_address",
+        "type": "Address"
+      },
+      {
+        "name": "max_acc_open_pnl_delta",
+        "type": "BigUint"
+      },
+      {
+        "name": "max_daily_acc_pnl_delta",
+        "type": "BigUint"
+      },
+      {
+        "name": "withdraw_lock_ts",
+        "type": "List<u64>"
+      },
+      {
+        "name": "withdraw_lock_thresholds",
+        "type": "List<BigUint>"
+      },
+      {
+        "name": "withdraw_duration_ts",
+        "type": "u64"
+      },
+      {
+        "name": "max_supply_increase_daily",
+        "type": "BigUint"
+      },
+      {
+        "name": "losses_deplete",
+        "type": "BigUint"
+      },
+      {
+        "name": "max_ash_refill_daily",
+        "type": "BigUint"
+      }
+    ],
+    "outputs": []
+  },
+  "endpoints": [
+    {
+      "name": "getMaxAccPnlPerToken",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getMarketCap",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getAvailableAssets",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getCollateralizationP",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getWithdrawTimelock",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "getPendingAccBlockWeightedMarketCap",
+      "mutability": "readonly",
+      "inputs": [
+        {
+          "name": "current_nonce",
+          "type": "u64"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "deposit",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "requestWithdraw",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "cancelWithdraw",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "BigUint"
+        },
+        {
+          "name": "unlock_ts",
+          "type": "u64"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "withdraw",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "shares",
+          "type": "BigUint"
+        },
+        {
+          "name": "unlock_ts",
+          "type": "u64"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "distributeReward",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "sendAssets",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "assets",
+          "type": "BigUint"
+        },
+        {
+          "name": "receiver",
+          "type": "Address"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "receiveAssets",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "name": "deplete",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [
+        {
+          "name": "min_amount_out",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "depleteCallback",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "request_id",
+          "type": "u64"
+        },
+        {
+          "name": "price",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "refill",
+      "mutability": "mutable",
+      "payableInTokens": ["*"],
+      "inputs": [
+        {
+          "name": "min_amount_out",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "refillCallback",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "request_id",
+          "type": "u64"
+        },
+        {
+          "name": "price",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "updateAccPnlPerTokenUsed",
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "prev_pnl",
+          "type": "BigUint"
+        },
+        {
+          "name": "new_pnl",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getMaxAccOpenPnlDelta",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "setMaxAccOpenPnlDelta",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getMaxDailyAccPnlDelta",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "setMaxDailyAccPnlDelta",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getWithdrawDurationTs",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "setWithdrawDurationTs",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "u64"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getWithdrawLockTs",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "variadic<u64>",
+          "multi_result": true
+        }
+      ]
+    },
+    {
+      "name": "getWithdrawLockThresholdsP",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "variadic<BigUint>",
+          "multi_result": true
+        }
+      ]
+    },
+    {
+      "name": "setWithdrawLock",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "lock_ts",
+          "type": "List<u64>"
+        },
+        {
+          "name": "thresholds",
+          "type": "List<BigUint>"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getMaxSupplyIncreaseDailyP",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "setMaxSupplyIncreaseDailyP",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getLossesDepleteP",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "setLossesDepleteP",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getMaxAshRefillDaily",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "setMaxAshRefillDaily",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "BigUint"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getShareToAssetsPrice",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getAccPnlPerTokenUsed",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigInt"
+        }
+      ]
+    },
+    {
+      "name": "getAccPnlPerToken",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigInt"
+        }
+      ]
+    },
+    {
+      "name": "getAccRewardsPerToken",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getDailyAccPnlDelta",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigInt"
+        }
+      ]
+    },
+    {
+      "name": "getLastDailyAccPnlDeltaReset",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "getCurrentMaxSupply",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getLastMaxSupplyUpdate",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "getWithdrawRequests",
+      "mutability": "readonly",
+      "inputs": [
+        {
+          "name": "owner",
+          "type": "Address"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "variadic<multi<u64,BigUint>>",
+          "multi_result": true
+        }
+      ]
+    },
+    {
+      "name": "getWithdrawRequest",
+      "mutability": "readonly",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "Address"
+        },
+        {
+          "name": "unlock_ts",
+          "type": "u64"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getAssetsToDeplete",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getDailyAshRefill",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getLastDailyAshRefillReset",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "getTotalSupply",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalDeposited",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalClosedPnl",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigInt"
+        }
+      ]
+    },
+    {
+      "name": "getTotalRewards",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalLiability",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigInt"
+        }
+      ]
+    },
+    {
+      "name": "getTotalDepleted",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalDepletedAsh",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalRefilled",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getTotalRefilledAsh",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getAccBlockWeightedMarketCap",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "BigUint"
+        }
+      ]
+    },
+    {
+      "name": "getAccBlockWeightedMarketCapLastStored",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "getPriceRequest",
+      "mutability": "readonly",
+      "inputs": [
+        {
+          "name": "request_id",
+          "type": "u64"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "PriceRequest"
+        }
+      ]
+    },
+    {
+      "name": "getAshTokenId",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "TokenIdentifier"
+        }
+      ]
+    },
+    {
+      "name": "getAssetTokenId",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "TokenIdentifier"
+        }
+      ]
+    },
+    {
+      "name": "getShareTokenId",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "TokenIdentifier"
+        }
+      ]
+    },
+    {
+      "name": "issueLpToken",
+      "mutability": "mutable",
+      "payableInTokens": ["EGLD"],
+      "inputs": [
+        {
+          "name": "lp_token_name",
+          "type": "bytes"
+        },
+        {
+          "name": "lp_token_ticker",
+          "type": "bytes"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getTreasuryAddress",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "Address"
+        }
+      ]
+    },
+    {
+      "name": "setTreasuryAddress",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "Address"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getTradingAddress",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "Address"
+        }
+      ]
+    },
+    {
+      "name": "setTradingAddress",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "Address"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getPnlFeedAddress",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "Address"
+        }
+      ]
+    },
+    {
+      "name": "setPnlFeedAddress",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "Address"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "name": "getPriceAggAddress",
+      "mutability": "readonly",
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "Address"
+        }
+      ]
+    },
+    {
+      "name": "setPriceAggAddress",
+      "onlyOwner": true,
+      "mutability": "mutable",
+      "inputs": [
+        {
+          "name": "new_value",
+          "type": "Address"
+        }
+      ],
+      "outputs": []
+    }
+  ],
+  "events": [
+    {
+      "identifier": "request_withdraw_event",
+      "inputs": [
+        {
+          "name": "caller",
+          "type": "Address",
+          "indexed": true
+        },
+        {
+          "name": "unlock_ts",
+          "type": "u64",
+          "indexed": true
+        }
+      ]
+    }
+  ],
+  "hasCallback": true,
+  "types": {
+    "PriceRequest": {
+      "type": "struct",
+      "fields": [
+        {
+          "name": "caller",
+          "type": "Address"
+        },
+        {
+          "name": "amount_in",
+          "type": "BigUint"
+        },
+        {
+          "name": "min_amount_out",
+          "type": "BigUint"
+        }
+      ]
+    }
+  }
+}

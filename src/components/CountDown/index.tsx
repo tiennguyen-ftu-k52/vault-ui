@@ -4,10 +4,11 @@ import styles from './index.module.scss'
 
 interface Props {
   seconds: number
+  secondsOnReset?: number
   onCountdownEnd?: () => void
 }
 
-function CountDown({ seconds, onCountdownEnd }: Props) {
+function CountDown({ seconds, secondsOnReset, onCountdownEnd }: Props) {
   const [remainingSeconds, setRemainingSeconds] = useState(seconds)
 
   useEffect(() => {
@@ -17,9 +18,9 @@ function CountDown({ seconds, onCountdownEnd }: Props) {
       countdownTimeout = setTimeout(() => {
         setRemainingSeconds((prevSeconds) => prevSeconds - 1)
       }, 1000)
-    } else if (remainingSeconds === 0 && onCountdownEnd) {
-      setRemainingSeconds(seconds)
-      onCountdownEnd()
+    } else if (remainingSeconds === 0) {
+      if (secondsOnReset !== undefined) setRemainingSeconds(secondsOnReset)
+      if (onCountdownEnd) onCountdownEnd()
     }
 
     return () => {

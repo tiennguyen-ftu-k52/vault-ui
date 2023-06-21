@@ -32,6 +32,7 @@ function Epoch() {
         timer: placeholder,
         start: placeholder,
         end: placeholder,
+        secondsOnReset: 0,
       }
     }
 
@@ -45,11 +46,12 @@ function Epoch() {
       roundsPassed: stats.roundsPassed,
       roundsPerEpoch: stats.roundsPerEpoch,
     })
+    const secondsOnReset = (stats.refreshRate / 1000) * stats.roundsPerEpoch
 
-    return { epoch: stats.epoch, timer, start, end }
+    return { epoch: stats.epoch, timer, start, end, secondsOnReset }
   }
 
-  const { epoch, timer, start, end } = getEpochValues(stats)
+  const { epoch, timer, start, end, secondsOnReset } = getEpochValues(stats)
 
   return (
     <Space size={24} className={styles.container}>
@@ -57,7 +59,11 @@ function Epoch() {
         label="Epoch"
         value={
           timer ? (
-            <CountDown seconds={timer as number} onCountdownEnd={refetch} />
+            <CountDown
+              seconds={timer as number}
+              secondsOnReset={secondsOnReset}
+              onCountdownEnd={refetch}
+            />
           ) : (
             timer
           )

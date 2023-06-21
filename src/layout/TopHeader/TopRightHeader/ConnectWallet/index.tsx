@@ -20,7 +20,7 @@ const items: MenuProps['items'] = [
         rel="noopener noreferrer"
         onClick={() => logout(window.location.href)}
       >
-        Log out
+        Disconnect wallet
       </a>
     ),
   },
