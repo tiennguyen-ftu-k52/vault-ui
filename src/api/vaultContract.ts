@@ -9,7 +9,7 @@ import { sendTransactions } from '@multiversx/sdk-dapp/services/transactions'
 import { ProxyNetworkProvider } from '@multiversx/sdk-network-providers'
 import abiJson from '../assets/vault.abi.json'
 import { CONTRACT_ADDRESS, GAS_LIMIT, NETWORK_ENV } from '../constants/network'
-import { ASSET_TOKEN, BIGINT_UNIT } from '../constants/contract'
+import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '../constants/contract'
 
 const vaultContract = createVaultContract()
 const networkProvider = createNetworkProvider()
@@ -41,12 +41,12 @@ function createNetworkProvider() {
   )
 }
 
-interface DepositParams {
+interface Params {
   amount: number
   address: string
 }
 
-export async function deposit({ amount, address }: DepositParams) {
+export async function deposit({ amount, address }: Params) {
   const transfer = TokenTransfer.fungibleFromAmount(
     ASSET_TOKEN,
     (amount * BIGINT_UNIT) / 100,
@@ -56,6 +56,30 @@ export async function deposit({ amount, address }: DepositParams) {
     .deposit([])
     .withSingleESDTTransfer(transfer)
     .withSender(new Address(address))
+    .withGasLimit(GAS_LIMIT)
+    .withChainID('D')
+    .buildTransaction()
+
+  try {
+    const { error } = await sendTransactions({
+      transactions: [transaction],
+    })
+    return !error
+  } catch (error) {
+    return false
+  }
+}
+
+export async function requestWithdraw({ amount, address }: Params) {
+  const transfer = TokenTransfer.fungibleFromAmount(
+    SHARE_TOKEN,
+    (amount * BIGINT_UNIT) / 100,
+    2,
+  )
+  const transaction = vaultContract.methods
+    .requestWithdraw([])
+    .withSingleESDTTransfer(transfer)
+    .withExplicitReceiver(new Address(address))
     .withGasLimit(GAS_LIMIT)
     .withChainID('D')
     .buildTransaction()

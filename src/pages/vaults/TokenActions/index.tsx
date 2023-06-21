@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { Row } from 'antd'
-import InputToken from './InputToken'
-import LockToken from './LockToken'
-import PreviewResult from './PreviewResult'
-import styles from './index.module.scss'
 import {
   useGetAccountInfo,
   useGetNetworkConfig,
@@ -13,9 +9,9 @@ import { WalletToken } from '../../../interfaces/wallet'
 import { getWalletTokens } from '../../../api/wallet'
 import { getAssetTokenBalance } from '../../../utils/wallet'
 import ActionDetails from './ActionDetails'
-import Tip from './Tip'
-import DepositButton from './DepositButton'
 import ActionTabs from './ActionTabs'
+import DepositBox from './DepositBox'
+import styles from './index.module.scss'
 
 const TAB_ITEMS = [
   {
@@ -59,33 +55,13 @@ function TokenActions() {
         />
 
         <div className={styles.boxContainer}>
-          <InputToken
-            amount={amount}
+          <DepositBox
+            address={address}
             assetBalance={assetBalance}
+            amount={amount}
             setAmount={setAmount}
-          />
-
-          <div className={styles.checkboxContainer}>
-            <LockToken checked={checked} setChecked={setChecked} />
-          </div>
-
-          <div className={styles.previewContainer}>
-            <PreviewResult amount={amount} />
-          </div>
-
-          <div className={styles.buttonContainer}>
-            <DepositButton
-              address={address}
-              amount={amount}
-              assetBalance={assetBalance}
-            />
-          </div>
-
-          <Tip
-            title="Please Aware"
-            content={
-              "You can't immediately withdraw your assets. Withdraws follow an epoch..."
-            }
+            checked={checked}
+            setChecked={setChecked}
           />
         </div>
       </Row>
