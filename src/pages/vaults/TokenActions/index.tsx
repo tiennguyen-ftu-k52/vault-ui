@@ -5,7 +5,7 @@ import ActionDetails from './ActionDetails'
 import ActionTabs from './ActionTabs'
 import DepositBox from './DepositBox'
 import styles from './index.module.scss'
-import WithdrawBox from './WithdrawBox'
+import RequestWithdrawBox from './RequestWithdrawBox'
 
 const TAB_ITEMS = [
   {
@@ -38,7 +38,7 @@ function TokenActions() {
 
         <div className={styles.boxContainer}>
           {activeTab === 'deposit' && <DepositBox address={address} />}
-          {activeTab === 'withdraw' && <WithdrawBox address={address} />}
+          {activeTab === 'withdraw' && <RequestWithdrawBox address={address} />}
         </div>
       </Row>
 

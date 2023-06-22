@@ -3,17 +3,16 @@ import {
   useTrackTransactionStatus,
   UseTrackTransactionStatusArgsType,
 } from '@multiversx/sdk-dapp/hooks'
-import { useContractQuery } from './useContractQuery'
 import { notification } from 'antd'
 
 interface Session {
   id: UseTrackTransactionStatusArgsType['transactionId']
   message?: string
+  successAction?: () => void
 }
 
 export function useTrackTransaction() {
   const [tx, setTx] = useState<Session | null>(null)
-  const { refetchQueries } = useContractQuery()
 
   useTrackTransactionStatus({
     transactionId: tx?.id || null,
@@ -23,8 +22,10 @@ export function useTrackTransaction() {
           message: tx.message,
         })
       }
+      if (tx?.successAction) {
+        tx.successAction()
+      }
       setTx(null)
-      refetchQueries()
     },
   })
 

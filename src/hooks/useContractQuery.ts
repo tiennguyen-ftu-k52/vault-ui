@@ -51,7 +51,7 @@ export function useContractQuery() {
       queryFn: getMaxAccPnlPerToken,
     })
 
-  function refetchQueries() {
+  function refetchContractQueries() {
     refetchTokens()
     refetchShareToAssetsPrice()
     refetchCollatRatio()
@@ -67,6 +67,6 @@ export function useContractQuery() {
     collatRatio,
     totalSupply,
     maxAccPnlPerToken,
-    refetchQueries,
+    refetchContractQueries,
   }
 }

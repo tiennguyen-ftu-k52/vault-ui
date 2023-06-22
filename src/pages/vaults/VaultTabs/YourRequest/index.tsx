@@ -1,48 +1,28 @@
-// import { useQuery } from 'react-query'
-import { Table } from 'antd'
+import { useQuery } from 'react-query'
+import { Space, Table } from 'antd'
 import { ReactComponent as ArrowDownIcon } from '../../../../assets/icons/arrow-down.svg'
 import { ReactComponent as SortDownIcon } from '../../../../assets/icons/sort-down.svg'
 import styles from './index.module.scss'
-// import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
-// import { getWithdrawRequests } from '../../../../api/vaultContract'
+import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
+import { getWithdrawRequests } from '../../../../api/vaultContract'
+import { WithdrawRequest } from '../../../../interfaces/withdraw'
+import { dateFormatter } from '../../../../utils/dateTime'
+import { DATETIME_FORMAT } from '../../../../constants/dateTime'
+import { formatNumber } from '../../../../utils/number'
+import { WITHDRAW_STATUS } from '../../../../constants/withdraw'
+import WithdrawButton from './WithdrawButton'
+import CancelButton from './CancelButton'
 
 const { Column } = Table
 
-interface DataType {
+interface DataType extends WithdrawRequest {
   key: React.Key
-  time: string
-  type: string
-  amount: string
-  epoch: number
-  status: string
 }
 
-const data: DataType[] = [
-  {
-    key: '1',
-    time: '21:05 24/12/2022',
-    type: 'Withdraw',
-    amount: '32,493.94 tvDAI',
-    epoch: 452,
-    status: 'Waiting',
-  },
-  {
-    key: '2',
-    time: '21:05 24/12/2022',
-    type: 'Unlock',
-    amount: '32,493.94 tvDAI',
-    epoch: 0,
-    status: 'Executed',
-  },
-  {
-    key: '3',
-    time: '21:05 24/12/2022',
-    type: 'Withdrew',
-    amount: '32,493.94 tvDAI',
-    epoch: 452,
-    status: 'Executed',
-  },
-]
+function getTypeFromStatus(status: string) {
+  console.log('status', status)
+  return 'Withdraw'
+}
 
 function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
   return (
@@ -54,17 +34,27 @@ function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
 }
 
 function YourRequest() {
-  // const { address } = useGetAccountInfo()
-  // const { data: withdrawRequests } = useQuery<any[]>({
-  //   queryKey: ['withdrawRequests'],
-  //   queryFn: () => getWithdrawRequests(address),
-  //   enabled: !!address,
-  // })
+  const { address } = useGetAccountInfo()
+  const { data: withdrawRequests, isFetching } = useQuery<WithdrawRequest[]>({
+    queryKey: ['withdrawRequests'],
+    queryFn: () => getWithdrawRequests(address),
+    enabled: !!address,
+  })
 
-  // console.log('withdrawRequests', withdrawRequests)
+  const tableData: DataType[] | undefined = withdrawRequests?.map((req) => ({
+    key: req.ts,
+    ts: req.ts,
+    amount: req.amount,
+    status: req.status,
+    epoch: req.epoch,
+  }))
 
   return (
-    <Table className={styles.table} dataSource={data}>
+    <Table
+      className={styles.table}
+      dataSource={tableData || []}
+      loading={isFetching}
+    >
       <Column
         title={
           <ColumnTitle
@@ -72,8 +62,21 @@ function YourRequest() {
             icon={<SortDownIcon width={20} height={20} />}
           />
         }
-        dataIndex="time"
-        key="time"
+        dataIndex="ts"
+        key="ts"
+        render={(ts) => {
+          const date = dateFormatter(ts * 1000)
+          return (
+            <div>
+              <div className={styles.time}>
+                {date.format(DATETIME_FORMAT.TIME)}
+              </div>
+              <div className={styles.date}>
+                {date.format(DATETIME_FORMAT.SHORT_DATE)}
+              </div>
+            </div>
+          )
+        }}
       />
       <Column
         title={
@@ -82,8 +85,13 @@ function YourRequest() {
             icon={<ArrowDownIcon width={20} height={20} />}
           />
         }
-        dataIndex="type"
+        dataIndex="status"
         key="type"
+        render={(status) => {
+          return (
+            <span className={styles.type}>{getTypeFromStatus(status)}</span>
+          )
+        }}
       />
       <Column
         title={
@@ -94,6 +102,12 @@ function YourRequest() {
         }
         dataIndex="amount"
         key="amount"
+        render={(amount) => (
+          <Space size={4} className={styles.amount}>
+            <span className={styles.amountValue}>{formatNumber(amount)}</span>
+            <span className={styles.amountLabel}>tvDAI</span>
+          </Space>
+        )}
       />
       <Column
         title={<ColumnTitle text="Epoch" />}
@@ -109,6 +123,32 @@ function YourRequest() {
         }
         dataIndex="status"
         key="status"
+        render={(status) => <div className={styles.status}>{status}</div>}
+      />
+      <Column
+        title={<ColumnTitle text="Action" />}
+        dataIndex="status"
+        key="action"
+        render={(status, req: WithdrawRequest) => {
+          return (
+            <div className={styles.action}>
+              {status === WITHDRAW_STATUS.EXECUTABLE && (
+                <WithdrawButton
+                  address={address}
+                  amount={req.amount}
+                  ts={req.ts}
+                />
+              )}
+              {[WITHDRAW_STATUS.WAITING, WITHDRAW_STATUS.EXPIRED] && (
+                <CancelButton
+                  address={address}
+                  amount={req.amount}
+                  ts={req.ts}
+                />
+              )}
+            </div>
+          )
+        }}
       />
     </Table>
   )

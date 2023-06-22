@@ -3,7 +3,7 @@ import { Row, Space } from 'antd'
 import InputToken from '../InputToken'
 import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
-import WithdrawButton from '../WithdrawButton'
+import RequestWithdrawButton from '../RequestWithdrawButton'
 import styles from './index.module.scss'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
 
@@ -11,7 +11,7 @@ interface Props {
   address: string
 }
 
-function WithdrawBox({ address }: Props) {
+function RequestWithdrawBox({ address }: Props) {
   const { shareTokenBalance: balance } = useContractQuery()
   const [amount, setAmount] = useState('')
 
@@ -30,7 +30,7 @@ function WithdrawBox({ address }: Props) {
 
       <PreviewResult amount={amount} title="Get" />
 
-      <WithdrawButton
+      <RequestWithdrawButton
         address={address}
         amount={amount}
         balance={balance}
@@ -56,4 +56,4 @@ function WithdrawBox({ address }: Props) {
   )
 }
 
-export default WithdrawBox
+export default RequestWithdrawBox

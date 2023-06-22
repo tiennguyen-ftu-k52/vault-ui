@@ -563,7 +563,7 @@
       ],
       "outputs": [
         {
-          "type": "BigUint"
+          "type": "tuple<BigUint,WithdrawStatus>"
         }
       ]
     },
@@ -890,6 +890,23 @@
         {
           "name": "min_amount_out",
           "type": "BigUint"
+        }
+      ]
+    },
+    "WithdrawStatus": {
+      "type": "enum",
+      "variants": [
+        {
+          "name": "WAITING",
+          "discriminant": 0
+        },
+        {
+          "name": "EXECUTABLE",
+          "discriminant": 1
+        },
+        {
+          "name": "EXPIRED",
+          "discriminant": 2
         }
       ]
     }

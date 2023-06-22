@@ -35,11 +35,35 @@ export async function getMaxAccPnlPerToken() {
   return value / BIGINT_UNIT
 }
 
+export async function getWithdrawRequest({
+  address,
+  ts,
+}: {
+  address: string
+  ts: number
+}) {
+  const value = await executeQuery('getWithdrawRequest', [
+    new Address(address) as never,
+    ts as never,
+  ])
+  return value?.field1?.name || ''
+}
+
 export async function getWithdrawRequests(address: string) {
   const values = await executeQuery('getWithdrawRequests', [
     new Address(address) as never,
   ])
-  return values
+
+  const results = await Promise.all(
+    values.map(async (val: number[]) => {
+      const ts = Number(val[0].valueOf())
+      const amount = val[1] / BIGINT_UNIT
+      const status = await getWithdrawRequest({ address, ts })
+      return { ts, amount, status, epoch: 0 }
+    }),
+  )
+
+  return results
 }
 
 interface Params {
@@ -72,6 +96,46 @@ export async function requestWithdraw({ amount, address }: Params) {
   const transaction = vaultContract.methods
     .requestWithdraw([])
     .withSingleESDTTransfer(transfer)
+    .withSender(new Address(address))
+    .withGasLimit(GAS_LIMIT)
+    .withChainID('D')
+    .buildTransaction()
+
+  try {
+    const { sessionId } = await sendTransactions({
+      transactions: [transaction],
+    })
+    return sessionId
+  } catch (error) {
+    return ''
+  }
+}
+
+interface WithdrawParams extends Params {
+  ts: number
+}
+
+export async function withdraw({ address, amount, ts }: WithdrawParams) {
+  const transaction = vaultContract.methods
+    .withdraw([amount * BIGINT_UNIT, ts])
+    .withSender(new Address(address))
+    .withGasLimit(GAS_LIMIT)
+    .withChainID('D')
+    .buildTransaction()
+
+  try {
+    const { sessionId } = await sendTransactions({
+      transactions: [transaction],
+    })
+    return sessionId
+  } catch (error) {
+    return ''
+  }
+}
+
+export async function cancelWithdraw({ address, amount, ts }: WithdrawParams) {
+  const transaction = vaultContract.methods
+    .cancelWithdraw([amount * BIGINT_UNIT, ts])
     .withSender(new Address(address))
     .withGasLimit(GAS_LIMIT)
     .withChainID('D')

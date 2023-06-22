@@ -2,6 +2,8 @@ import { Button, notification } from 'antd'
 import { requestWithdraw } from '../../../../api/vaultContract'
 import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
+import { useContractQuery } from '../../../../hooks/useContractQuery'
+import { useWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
 
 interface Props {
   address: string
@@ -10,8 +12,10 @@ interface Props {
   onSubmit?: () => void
 }
 
-function WithdrawButton({ address, amount, balance, onSubmit }: Props) {
+function RequestWithdrawButton({ address, amount, balance, onSubmit }: Props) {
   const { trackTransaction } = useTrackTransaction()
+  const { refetchContractQueries } = useContractQuery()
+  const { refetchWithdrawRequests } = useWithdrawRequests()
 
   async function handleSubmit() {
     const numAmount = Number(amount)
@@ -34,6 +38,10 @@ function WithdrawButton({ address, amount, balance, onSubmit }: Props) {
         trackTransaction({
           id: txId,
           message: `Request withdraw ${numAmount} DAI successfully`,
+          successAction() {
+            refetchContractQueries()
+            refetchWithdrawRequests()
+          },
         })
         onSubmit && onSubmit()
       }
@@ -47,4 +55,4 @@ function WithdrawButton({ address, amount, balance, onSubmit }: Props) {
   )
 }
 
-export default WithdrawButton
+export default RequestWithdrawButton

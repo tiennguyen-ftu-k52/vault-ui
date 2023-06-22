@@ -31,3 +31,41 @@
   font-size: 10px;
   line-height: 13px;
 }
+
+.time {
+  font-size: 8px;
+  color: $color-black-disabled;
+}
+
+.date {
+  font-size: 10px;
+}
+
+.type {
+  font-size: 12px;
+  font-weight: 700;
+  color: $color-yellow;
+}
+
+.amount {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.amountLabel {
+  font-size: 8px;
+  color: $color-black-disabled;
+}
+
+.status {
+  font-size: 12px;
+  color: $color-black-disabled;
+  text-align: right;
+}
+
+.action {
+  display: flex;
+  justify-content: flex-end;
+}

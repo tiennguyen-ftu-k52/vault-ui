@@ -2,6 +2,7 @@ import { Button, notification } from 'antd'
 import { deposit } from '../../../../api/vaultContract'
 import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
+import { useContractQuery } from '../../../../hooks/useContractQuery'
 
 interface Props {
   address: string
@@ -12,6 +13,7 @@ interface Props {
 
 function DepositButton({ address, amount, balance, onSubmit }: Props) {
   const { trackTransaction } = useTrackTransaction()
+  const { refetchContractQueries } = useContractQuery()
 
   async function handleSubmit() {
     const numAmount = Number(amount)
@@ -32,6 +34,7 @@ function DepositButton({ address, amount, balance, onSubmit }: Props) {
         trackTransaction({
           id: txId,
           message: `Deposit ${numAmount} DAI successfully`,
+          successAction: refetchContractQueries,
         })
         onSubmit && onSubmit()
       }
