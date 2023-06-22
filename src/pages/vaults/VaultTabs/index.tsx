@@ -4,6 +4,7 @@ import cs from 'classnames'
 import VaultOverview from './VaultOverview'
 import YourRequest from './YourRequest'
 import styles from './index.module.scss'
+import { UseWithdrawRequests } from '../../../hooks/useWithdrawRequests'
 
 const TAB_ITEMS = [
   {
@@ -20,7 +21,11 @@ const TAB_ITEMS = [
   },
 ]
 
-function VaultTabs() {
+interface Props {
+  withdrawRequestsData: UseWithdrawRequests
+}
+
+function VaultTabs({ withdrawRequestsData }: Props) {
   const [activeTab, setActiveTab] = useState('overview')
 
   return (
@@ -43,7 +48,9 @@ function VaultTabs() {
       </Row>
 
       {activeTab === 'overview' && <VaultOverview />}
-      {activeTab === 'your-request' && <YourRequest />}
+      {activeTab === 'your-request' && (
+        <YourRequest withdrawRequestsData={withdrawRequestsData} />
+      )}
     </div>
   )
 }

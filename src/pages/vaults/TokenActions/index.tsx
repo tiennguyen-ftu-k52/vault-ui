@@ -6,6 +6,7 @@ import ActionTabs from './ActionTabs'
 import DepositBox from './DepositBox'
 import styles from './index.module.scss'
 import RequestWithdrawBox from './RequestWithdrawBox'
+import { UseWithdrawRequests } from '../../../hooks/useWithdrawRequests'
 
 const TAB_ITEMS = [
   {
@@ -22,7 +23,11 @@ const TAB_ITEMS = [
   },
 ]
 
-function TokenActions() {
+interface Props {
+  withdrawRequestsData: UseWithdrawRequests
+}
+
+function TokenActions({ withdrawRequestsData }: Props) {
   const [activeTab, setActiveTab] = useState('deposit')
 
   const { address } = useGetAccountInfo()
@@ -38,7 +43,12 @@ function TokenActions() {
 
         <div className={styles.boxContainer}>
           {activeTab === 'deposit' && <DepositBox address={address} />}
-          {activeTab === 'withdraw' && <RequestWithdrawBox address={address} />}
+          {activeTab === 'withdraw' && (
+            <RequestWithdrawBox
+              address={address}
+              withdrawRequestsData={withdrawRequestsData}
+            />
+          )}
         </div>
       </Row>
 

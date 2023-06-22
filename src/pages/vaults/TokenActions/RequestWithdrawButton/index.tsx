@@ -3,19 +3,26 @@ import { requestWithdraw } from '../../../../api/vaultContract'
 import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
-import { useWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
+import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
 
 interface Props {
   address: string
   amount: string
   balance: number
+  withdrawRequestsData: UseWithdrawRequests
   onSubmit?: () => void
 }
 
-function RequestWithdrawButton({ address, amount, balance, onSubmit }: Props) {
+function RequestWithdrawButton({
+  address,
+  amount,
+  balance,
+  withdrawRequestsData,
+  onSubmit,
+}: Props) {
   const { trackTransaction } = useTrackTransaction()
   const { refetchContractQueries } = useContractQuery()
-  const { refetchWithdrawRequests } = useWithdrawRequests()
+  const { refetchWithdrawRequests } = withdrawRequestsData
 
   async function handleSubmit() {
     const numAmount = Number(amount)

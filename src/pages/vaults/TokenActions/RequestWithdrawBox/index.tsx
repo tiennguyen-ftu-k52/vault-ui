@@ -6,12 +6,14 @@ import Tip from '../Tip'
 import RequestWithdrawButton from '../RequestWithdrawButton'
 import styles from './index.module.scss'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
+import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
 
 interface Props {
   address: string
+  withdrawRequestsData: UseWithdrawRequests
 }
 
-function RequestWithdrawBox({ address }: Props) {
+function RequestWithdrawBox({ address, withdrawRequestsData }: Props) {
   const { shareTokenBalance: balance } = useContractQuery()
   const [amount, setAmount] = useState('')
 
@@ -35,6 +37,7 @@ function RequestWithdrawBox({ address }: Props) {
         amount={amount}
         balance={balance}
         onSubmit={clearState}
+        withdrawRequestsData={withdrawRequestsData}
       />
 
       <Tip

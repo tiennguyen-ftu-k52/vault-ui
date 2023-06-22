@@ -1,10 +1,8 @@
-import { useQuery } from 'react-query'
 import { Space, Table } from 'antd'
 import { ReactComponent as ArrowDownIcon } from '../../../../assets/icons/arrow-down.svg'
 import { ReactComponent as SortDownIcon } from '../../../../assets/icons/sort-down.svg'
 import styles from './index.module.scss'
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
-import { getWithdrawRequests } from '../../../../api/vaultContract'
 import { WithdrawRequest } from '../../../../interfaces/withdraw'
 import { dateFormatter } from '../../../../utils/dateTime'
 import { DATETIME_FORMAT } from '../../../../constants/dateTime'
@@ -12,16 +10,12 @@ import { formatNumber } from '../../../../utils/number'
 import { WITHDRAW_STATUS } from '../../../../constants/withdraw'
 import WithdrawButton from './WithdrawButton'
 import CancelButton from './CancelButton'
+import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
 
 const { Column } = Table
 
 interface DataType extends WithdrawRequest {
   key: React.Key
-}
-
-function getTypeFromStatus(status: string) {
-  console.log('status', status)
-  return 'Withdraw'
 }
 
 function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
@@ -33,13 +27,13 @@ function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
   )
 }
 
-function YourRequest() {
+interface Props {
+  withdrawRequestsData: UseWithdrawRequests
+}
+
+function YourRequest({ withdrawRequestsData }: Props) {
   const { address } = useGetAccountInfo()
-  const { data: withdrawRequests, isFetching } = useQuery<WithdrawRequest[]>({
-    queryKey: ['withdrawRequests'],
-    queryFn: () => getWithdrawRequests(address),
-    enabled: !!address,
-  })
+  const { withdrawRequests, fetchingWithdrawRequests } = withdrawRequestsData
 
   const tableData: DataType[] | undefined = withdrawRequests?.map((req) => ({
     key: req.ts,
@@ -53,7 +47,7 @@ function YourRequest() {
     <Table
       className={styles.table}
       dataSource={tableData || []}
-      loading={isFetching}
+      loading={fetchingWithdrawRequests}
     >
       <Column
         title={
@@ -87,10 +81,8 @@ function YourRequest() {
         }
         dataIndex="status"
         key="type"
-        render={(status) => {
-          return (
-            <span className={styles.type}>{getTypeFromStatus(status)}</span>
-          )
+        render={() => {
+          return <span className={styles.type}>Withdraw</span>
         }}
       />
       <Column
