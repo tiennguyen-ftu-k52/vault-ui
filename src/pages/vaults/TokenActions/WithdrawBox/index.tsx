@@ -1,18 +1,24 @@
+import { useState } from 'react'
 import { Row, Space } from 'antd'
 import InputToken from '../InputToken'
 import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import WithdrawButton from '../WithdrawButton'
 import styles from './index.module.scss'
+import { useContractQuery } from '../../../../hooks/useContractQuery'
 
 interface Props {
   address: string
-  balance: number
-  amount: string
-  setAmount: (value: string) => void
 }
 
-function WithdrawBox({ address, balance, amount, setAmount }: Props) {
+function WithdrawBox({ address }: Props) {
+  const { shareTokenBalance: balance } = useContractQuery()
+  const [amount, setAmount] = useState('')
+
+  function clearState() {
+    setAmount('')
+  }
+
   return (
     <Space size={24} direction="vertical">
       <InputToken
@@ -24,7 +30,12 @@ function WithdrawBox({ address, balance, amount, setAmount }: Props) {
 
       <PreviewResult amount={amount} title="Get" />
 
-      <WithdrawButton address={address} amount={amount} balance={balance} />
+      <WithdrawButton
+        address={address}
+        amount={amount}
+        balance={balance}
+        onSubmit={clearState}
+      />
 
       <Tip
         title="Withdraw requests"

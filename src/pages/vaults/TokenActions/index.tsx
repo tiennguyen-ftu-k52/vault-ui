@@ -6,7 +6,6 @@ import ActionTabs from './ActionTabs'
 import DepositBox from './DepositBox'
 import styles from './index.module.scss'
 import WithdrawBox from './WithdrawBox'
-import { useContractQuery } from '../../../hooks/useContractQuery'
 
 const TAB_ITEMS = [
   {
@@ -25,11 +24,8 @@ const TAB_ITEMS = [
 
 function TokenActions() {
   const [activeTab, setActiveTab] = useState('deposit')
-  const [amount, setAmount] = useState('')
-  const [checked, setChecked] = useState(false)
 
   const { address } = useGetAccountInfo()
-  const { assetsTokenBalance, shareTokenBalance } = useContractQuery()
 
   return (
     <>
@@ -41,24 +37,8 @@ function TokenActions() {
         />
 
         <div className={styles.boxContainer}>
-          {activeTab === 'deposit' && (
-            <DepositBox
-              address={address}
-              balance={assetsTokenBalance}
-              amount={amount}
-              setAmount={setAmount}
-              checked={checked}
-              setChecked={setChecked}
-            />
-          )}
-          {activeTab === 'withdraw' && (
-            <WithdrawBox
-              address={address}
-              balance={shareTokenBalance}
-              amount={amount}
-              setAmount={setAmount}
-            />
-          )}
+          {activeTab === 'deposit' && <DepositBox address={address} />}
+          {activeTab === 'withdraw' && <WithdrawBox address={address} />}
         </div>
       </Row>
 

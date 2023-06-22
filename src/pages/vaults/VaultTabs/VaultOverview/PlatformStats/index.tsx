@@ -34,7 +34,7 @@ function PlatformStats() {
           label="Collat Ratio"
           value={renderFallback(
             collatRatio !== undefined
-              ? formatPercentage(collatRatio)
+              ? formatPercentage(collatRatio * 100)
               : collatRatio,
           )}
         />

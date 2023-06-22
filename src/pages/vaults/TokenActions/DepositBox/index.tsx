@@ -4,24 +4,23 @@ import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import DepositButton from '../DepositButton'
 import { Space } from 'antd'
+import { useContractQuery } from '../../../../hooks/useContractQuery'
+import { useState } from 'react'
 
 interface Props {
   address: string
-  balance: number
-  amount: string
-  setAmount: (value: string) => void
-  checked: boolean
-  setChecked: (value: boolean) => void
 }
 
-function DepositBox({
-  address,
-  balance,
-  amount,
-  setAmount,
-  checked,
-  setChecked,
-}: Props) {
+function DepositBox({ address }: Props) {
+  const { assetsTokenBalance: balance } = useContractQuery()
+  const [amount, setAmount] = useState('')
+  const [checked, setChecked] = useState(false)
+
+  function clearState() {
+    setAmount('')
+    setChecked(false)
+  }
+
   return (
     <Space size={24} direction="vertical">
       <InputToken
@@ -35,7 +34,12 @@ function DepositBox({
 
       <PreviewResult amount={amount} title="You receive" />
 
-      <DepositButton address={address} amount={amount} balance={balance} />
+      <DepositButton
+        address={address}
+        amount={amount}
+        balance={balance}
+        onSubmit={clearState}
+      />
 
       <Tip
         title="Please Aware"

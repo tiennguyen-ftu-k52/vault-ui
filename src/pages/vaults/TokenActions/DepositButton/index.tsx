@@ -7,9 +7,10 @@ interface Props {
   address: string
   amount: string
   balance: number
+  onSubmit?: () => void
 }
 
-function DepositButton({ address, amount, balance }: Props) {
+function DepositButton({ address, amount, balance, onSubmit }: Props) {
   const { trackTransaction } = useTrackTransaction()
 
   async function handleSubmit() {
@@ -32,6 +33,7 @@ function DepositButton({ address, amount, balance }: Props) {
           id: txId,
           message: `Deposit ${numAmount} DAI successfully`,
         })
+        onSubmit && onSubmit()
       }
     }
   }

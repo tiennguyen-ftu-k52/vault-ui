@@ -17,7 +17,7 @@ console.log(vaultContract.methods)
 
 export async function getCollatRatio() {
   const value = await executeQuery('getCollateralizationP', [])
-  return value / BIGINT_UNIT
+  return value / Math.pow(10, 12)
 }
 
 export async function getTotalSupply() {
@@ -78,12 +78,12 @@ export async function requestWithdraw({ amount, address }: Params) {
     .buildTransaction()
 
   try {
-    const { error } = await sendTransactions({
+    const { sessionId } = await sendTransactions({
       transactions: [transaction],
     })
-    return !error
+    return sessionId
   } catch (error) {
-    return false
+    return ''
   }
 }
 
