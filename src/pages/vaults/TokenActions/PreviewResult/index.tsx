@@ -1,22 +1,19 @@
-import { useQuery } from 'react-query'
-import { Row } from 'antd'
+import { Row, Space } from 'antd'
 import cs from 'classnames'
 import TokenHeadColorGray from '../../../../assets/icons/token-head-gray.svg'
 import styles from './index.module.scss'
 import DisplayToken from '../DisplayToken'
 import { formatCurrency, formatNumber } from '../../../../utils/number'
-import { getShareToAssetsPrice } from '../../../../api/vaultContract'
 import { renderFallback } from '../../../../utils/common'
+import { useContractQuery } from '../../../../hooks/useContractQuery'
 
 interface Props {
   amount: string
+  title: string
 }
 
-function PreviewResult({ amount }: Props) {
-  const { data: shareToAssetsPrice } = useQuery<number>({
-    queryKey: ['shareToAssetsPrice'],
-    queryFn: getShareToAssetsPrice,
-  })
+function PreviewResult({ amount, title }: Props) {
+  const { shareToAssetsPrice } = useContractQuery()
 
   const numAmount = Number(amount)
   const estValue =
@@ -25,24 +22,23 @@ function PreviewResult({ amount }: Props) {
       : undefined
 
   return (
-    <Row align="middle" justify="space-between">
-      <div className={styles.leftInputBox}>
-        <div className={styles.boxTitle}>You receive</div>
+    <Space size={8} direction="vertical" className={styles.container}>
+      <Row className={styles.boxTitle}>{title}</Row>
+
+      <Row align="middle" justify="space-between" className={styles.balanceBox}>
         <div className={cs(styles.boxSubTitle, styles.receiveBoxTitle)}>
           <DisplayToken icon={TokenHeadColorGray} text="DAI" />
         </div>
-      </div>
-
-      <div className={styles.rightInputBox}>
         <div className={styles.previewResult}>{formatNumber(numAmount)}</div>
-        <div className={styles.balanceLabel}>
-          ~
-          {renderFallback(
-            estValue !== undefined ? formatCurrency(estValue) : undefined,
-          )}
-        </div>
-      </div>
-    </Row>
+      </Row>
+
+      <Row align="middle" justify="end" className={styles.balanceLabel}>
+        ~
+        {renderFallback(
+          estValue !== undefined ? formatCurrency(estValue) : undefined,
+        )}
+      </Row>
+    </Space>
   )
 }
 

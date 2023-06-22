@@ -1,5 +1,9 @@
 @import '../../../../styles/variables.scss';
 
+.container {
+  width: 100%;
+}
+
 .receiveBoxTitle {
   margin-left: 0;
 }
@@ -13,42 +17,22 @@
   color: $color-black-disabled;
 }
 
+.balanceBox {
+  width: 100%;
+}
+
 .boxTitle {
   font-size: 12px;
   line-height: 15px;
   color: $color-black-disabled;
-  margin-bottom: 8px;
 }
 
 .boxSubtitle {
   margin-left: -16px;
 }
 
-.rightInputBox {
-  flex: 1;
-  text-align: right;
-  margin-left: 20px;
-}
-
-.select {
-  width: 100%;
-}
-
-.balance {
-  margin-top: 8px;
-}
-
 .balanceLabel {
   font-size: 10px;
   line-height: 13px;
   color: $color-black-disabled;
-}
-
-.balanceValue {
-  font-size: 10px;
-  line-height: 13px;
-}
-
-.percentageContainer {
-  margin-bottom: 24px;
 }

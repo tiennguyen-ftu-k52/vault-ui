@@ -1,17 +1,12 @@
 import { useState } from 'react'
-import { useQuery } from 'react-query'
 import { Row } from 'antd'
-import {
-  useGetAccountInfo,
-  useGetNetworkConfig,
-} from '@multiversx/sdk-dapp/hooks'
-import { WalletToken } from '../../../interfaces/wallet'
-import { getWalletTokens } from '../../../api/wallet'
-import { getAssetTokenBalance } from '../../../utils/wallet'
+import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
 import ActionDetails from './ActionDetails'
 import ActionTabs from './ActionTabs'
 import DepositBox from './DepositBox'
 import styles from './index.module.scss'
+import WithdrawBox from './WithdrawBox'
+import { useContractQuery } from '../../../hooks/useContractQuery'
 
 const TAB_ITEMS = [
   {
@@ -33,17 +28,8 @@ function TokenActions() {
   const [amount, setAmount] = useState('')
   const [checked, setChecked] = useState(false)
 
-  const {
-    network: { apiAddress },
-  } = useGetNetworkConfig()
   const { address } = useGetAccountInfo()
-  const { data: tokens } = useQuery<WalletToken[]>({
-    queryKey: ['tokens', apiAddress],
-    queryFn: () => getWalletTokens(apiAddress, address),
-    enabled: !!apiAddress,
-  })
-
-  const assetBalance = getAssetTokenBalance(tokens)
+  const { assetsTokenBalance, shareTokenBalance } = useContractQuery()
 
   return (
     <>
@@ -55,19 +41,30 @@ function TokenActions() {
         />
 
         <div className={styles.boxContainer}>
-          <DepositBox
-            address={address}
-            assetBalance={assetBalance}
-            amount={amount}
-            setAmount={setAmount}
-            checked={checked}
-            setChecked={setChecked}
-          />
+          {activeTab === 'deposit' && (
+            <DepositBox
+              address={address}
+              balance={assetsTokenBalance}
+              amount={amount}
+              setAmount={setAmount}
+              checked={checked}
+              setChecked={setChecked}
+            />
+          )}
+          {activeTab === 'withdraw' && (
+            <WithdrawBox
+              address={address}
+              balance={shareTokenBalance}
+              amount={amount}
+              setAmount={setAmount}
+            />
+          )}
         </div>
       </Row>
 
       <div className={styles.detailContainer}>
-        <ActionDetails title="Deposit" />
+        {activeTab === 'deposit' && <ActionDetails title="Deposit" />}
+        {activeTab === 'withdraw' && <ActionDetails title="Withdraw" />}
       </div>
     </>
   )

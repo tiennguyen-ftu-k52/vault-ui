@@ -3,11 +3,11 @@ import LockToken from '../LockToken'
 import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import DepositButton from '../DepositButton'
-import styles from './index.module.scss'
+import { Space } from 'antd'
 
 interface Props {
   address: string
-  assetBalance: number
+  balance: number
   amount: string
   setAmount: (value: string) => void
   checked: boolean
@@ -16,35 +16,26 @@ interface Props {
 
 function DepositBox({
   address,
-  assetBalance,
+  balance,
   amount,
   setAmount,
   checked,
   setChecked,
 }: Props) {
   return (
-    <div>
+    <Space size={24} direction="vertical">
       <InputToken
         amount={amount}
-        assetBalance={assetBalance}
+        title="Deposit"
+        balance={balance}
         setAmount={setAmount}
       />
 
-      <div className={styles.checkboxContainer}>
-        <LockToken checked={checked} setChecked={setChecked} />
-      </div>
+      <LockToken checked={checked} setChecked={setChecked} />
 
-      <div className={styles.previewContainer}>
-        <PreviewResult amount={amount} />
-      </div>
+      <PreviewResult amount={amount} title="You receive" />
 
-      <div className={styles.buttonContainer}>
-        <DepositButton
-          address={address}
-          amount={amount}
-          assetBalance={assetBalance}
-        />
-      </div>
+      <DepositButton address={address} amount={amount} balance={balance} />
 
       <Tip
         title="Please Aware"
@@ -52,7 +43,7 @@ function DepositBox({
           "You can't immediately withdraw your assets. Withdraws follow an epoch..."
         }
       />
-    </div>
+    </Space>
   )
 }
 

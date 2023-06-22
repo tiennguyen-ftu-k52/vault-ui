@@ -1,13 +1,8 @@
-import { useQuery } from 'react-query'
 import { Col, Row } from 'antd'
 import styles from './index.module.scss'
-import {
-  getCollatRatio,
-  getShareToAssetsPrice,
-  getTotalSupply,
-} from '../../../../../api/vaultContract'
 import { renderFallback } from '../../../../../utils/common'
 import { formatNumber, formatPercentage } from '../../../../../utils/number'
+import { useContractQuery } from '../../../../../hooks/useContractQuery'
 
 function StatCol({ label, value }: { label: string; value: string }) {
   return (
@@ -19,18 +14,7 @@ function StatCol({ label, value }: { label: string; value: string }) {
 }
 
 function PlatformStats() {
-  const { data: collatRatio } = useQuery<number>({
-    queryKey: ['collatRatio'],
-    queryFn: getCollatRatio,
-  })
-  const { data: totalSupply } = useQuery<number>({
-    queryKey: ['totalSupply'],
-    queryFn: getTotalSupply,
-  })
-  const { data: shareToAssetsPrice } = useQuery<number>({
-    queryKey: ['shareToAssetsPrice'],
-    queryFn: getShareToAssetsPrice,
-  })
+  const { collatRatio, totalSupply, shareToAssetsPrice } = useContractQuery()
 
   const tvl =
     totalSupply !== undefined && shareToAssetsPrice !== undefined

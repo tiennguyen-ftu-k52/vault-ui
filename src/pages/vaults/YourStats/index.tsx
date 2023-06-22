@@ -1,20 +1,9 @@
-import { useQuery } from 'react-query'
 import TokenHeadGrayIcon from '../../../assets/icons/token-head-gray.png'
 import TokenHeadColorIcon from '../../../assets/icons/token-head-color.png'
-import styles from './index.module.scss'
-import {
-  getMaxAccPnlPerToken,
-  getShareToAssetsPrice,
-} from '../../../api/vaultContract'
-import {
-  useGetAccountInfo,
-  useGetNetworkConfig,
-} from '@multiversx/sdk-dapp/hooks'
-import { getWalletTokens } from '../../../api/wallet'
-import { WalletToken } from '../../../interfaces/wallet'
-import { getShareTokenBalance } from '../../../utils/wallet'
 import { formatNumber } from '../../../utils/number'
 import { renderFallback } from '../../../utils/common'
+import { useContractQuery } from '../../../hooks/useContractQuery'
+import styles from './index.module.scss'
 
 function StatRow({
   label,
@@ -37,26 +26,8 @@ function StatRow({
 }
 
 function YourStats() {
-  const { data: maxAccPnlPerToken } = useQuery<number>({
-    queryKey: ['maxAccPnlPerToken'],
-    queryFn: getMaxAccPnlPerToken,
-  })
-  const { data: shareToAssetsPrice } = useQuery<number>({
-    queryKey: ['shareToAssetsPrice'],
-    queryFn: getShareToAssetsPrice,
-  })
-
-  const {
-    network: { apiAddress },
-  } = useGetNetworkConfig()
-  const { address } = useGetAccountInfo()
-  const { data: tokens } = useQuery<WalletToken[]>({
-    queryKey: ['tokens', apiAddress],
-    queryFn: () => getWalletTokens(apiAddress, address),
-    enabled: !!apiAddress,
-  })
-
-  const shareTokenBalance = getShareTokenBalance(tokens)
+  const { maxAccPnlPerToken, shareToAssetsPrice, shareTokenBalance } =
+    useContractQuery()
 
   const totalValue =
     shareToAssetsPrice !== undefined

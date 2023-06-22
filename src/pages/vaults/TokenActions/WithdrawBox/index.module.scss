@@ -1,0 +1,14 @@
+@import '../../../../styles/variables.scss';
+
+.tipFooterTitle {
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 13px;
+  color: $color-black-default;
+}
+
+.tipFooterContent {
+  font-size: 12px;
+  line-height: 15px;
+  color: $color-black-disabled;
+}

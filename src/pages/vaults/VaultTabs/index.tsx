@@ -25,7 +25,7 @@ function VaultTabs() {
 
   return (
     <div className={styles.container}>
-      <Row>
+      <Row className={styles.tabContainer}>
         <Space size={32}>
           {TAB_ITEMS.map((item) => (
             <a

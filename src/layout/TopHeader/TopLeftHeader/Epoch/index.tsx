@@ -29,7 +29,7 @@ function Epoch() {
       const placeholder = renderFallback()
       return {
         epoch: placeholder,
-        timer: placeholder,
+        timer: '',
         start: placeholder,
         end: placeholder,
         secondsOnReset: 0,
@@ -58,7 +58,7 @@ function Epoch() {
       <EpochRow
         label="Epoch"
         value={
-          timer ? (
+          timer !== '' ? (
             <CountDown
               seconds={timer as number}
               secondsOnReset={secondsOnReset}

@@ -1,4 +1,4 @@
-import { Row } from 'antd'
+import { Row, Space } from 'antd'
 import SelectInput from './SelectInput'
 import NumberInput from './NumberInput'
 import PercentageBar from './PercentageBar'
@@ -7,18 +7,19 @@ import styles from './index.module.scss'
 
 interface Props {
   amount: string
+  title: string
   setAmount: (value: string) => void
-  assetBalance: number
+  balance: number
 }
 
-function InputToken({ amount, assetBalance, setAmount }: Props) {
-  const percentage = Math.floor((Number(amount) / assetBalance) * 100)
+function InputToken({ amount, title, balance, setAmount }: Props) {
+  const percentage = Math.floor((Number(amount) / balance) * 100)
 
   return (
-    <div>
+    <Space size={24} direction="vertical">
       <Row align="middle" justify="space-between">
         <div className={styles.leftInputBox}>
-          <div className={styles.boxTitle}>Deposit</div>
+          <div className={styles.boxTitle}>{title}</div>
           <div className={styles.boxSubtitle}>
             <SelectInput />
           </div>
@@ -33,20 +34,18 @@ function InputToken({ amount, assetBalance, setAmount }: Props) {
           />
           <div className={styles.value}>
             <span className={styles.balanceLabel}>Balance: </span>
-            <a className={styles.balanceValue}>{formatNumber(assetBalance)}</a>
+            <a className={styles.balanceValue}>{formatNumber(balance)}</a>
           </div>
         </div>
       </Row>
 
-      <div className={styles.percentageContainer}>
-        <PercentageBar
-          percentage={percentage}
-          setPercentage={(percentage) => {
-            setAmount(`${(percentage / 100) * assetBalance}`)
-          }}
-        />
-      </div>
-    </div>
+      <PercentageBar
+        percentage={percentage}
+        setPercentage={(percentage) => {
+          setAmount(`${(percentage / 100) * balance}`)
+        }}
+      />
+    </Space>
   )
 }
 

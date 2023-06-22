@@ -1,7 +1,10 @@
+// import { useQuery } from 'react-query'
 import { Table } from 'antd'
 import { ReactComponent as ArrowDownIcon } from '../../../../assets/icons/arrow-down.svg'
 import { ReactComponent as SortDownIcon } from '../../../../assets/icons/sort-down.svg'
 import styles from './index.module.scss'
+// import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
+// import { getWithdrawRequests } from '../../../../api/vaultContract'
 
 const { Column } = Table
 
@@ -51,6 +54,15 @@ function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
 }
 
 function YourRequest() {
+  // const { address } = useGetAccountInfo()
+  // const { data: withdrawRequests } = useQuery<any[]>({
+  //   queryKey: ['withdrawRequests'],
+  //   queryFn: () => getWithdrawRequests(address),
+  //   enabled: !!address,
+  // })
+
+  // console.log('withdrawRequests', withdrawRequests)
+
   return (
     <Table className={styles.table} dataSource={data}>
       <Column

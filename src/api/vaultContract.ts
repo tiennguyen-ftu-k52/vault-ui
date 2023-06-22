@@ -16,29 +16,30 @@ const networkProvider = createNetworkProvider()
 console.log(vaultContract.methods)
 
 export async function getCollatRatio() {
-  return await executeQuery('getCollateralizationP', [])
+  const value = await executeQuery('getCollateralizationP', [])
+  return value / BIGINT_UNIT
 }
 
 export async function getTotalSupply() {
-  return await executeQuery('getTotalSupply', [])
+  const value = await executeQuery('getTotalSupply', [])
+  return value / BIGINT_UNIT
 }
 
 export async function getShareToAssetsPrice() {
-  return await executeQuery('getShareToAssetsPrice', [])
+  const value = await executeQuery('getShareToAssetsPrice', [])
+  return value / BIGINT_UNIT
 }
 
 export async function getMaxAccPnlPerToken() {
-  return await executeQuery('getMaxAccPnlPerToken', [])
+  const value = await executeQuery('getMaxAccPnlPerToken', [])
+  return value / BIGINT_UNIT
 }
 
-export async function getAvailableAssets() {
-  return await executeQuery('getAvailableAssets', [])
-}
-
-function createNetworkProvider() {
-  return new ProxyNetworkProvider(
-    `https://${NETWORK_ENV}-gateway.multiversx.com`,
-  )
+export async function getWithdrawRequests(address: string) {
+  const values = await executeQuery('getWithdrawRequests', [
+    new Address(address) as never,
+  ])
+  return values
 }
 
 interface Params {
@@ -47,13 +48,29 @@ interface Params {
 }
 
 export async function deposit({ amount, address }: Params) {
-  const transfer = TokenTransfer.fungibleFromAmount(
-    ASSET_TOKEN,
-    (amount * BIGINT_UNIT) / 100,
-    2,
-  )
+  const transfer = TokenTransfer.fungibleFromAmount(ASSET_TOKEN, amount, 18)
   const transaction = vaultContract.methods
     .deposit([])
+    .withSingleESDTTransfer(transfer)
+    .withSender(new Address(address))
+    .withGasLimit(GAS_LIMIT)
+    .withChainID('D')
+    .buildTransaction()
+
+  try {
+    const { sessionId } = await sendTransactions({
+      transactions: [transaction],
+    })
+    return sessionId
+  } catch (error) {
+    return ''
+  }
+}
+
+export async function requestWithdraw({ amount, address }: Params) {
+  const transfer = TokenTransfer.fungibleFromAmount(SHARE_TOKEN, amount, 18)
+  const transaction = vaultContract.methods
+    .requestWithdraw([])
     .withSingleESDTTransfer(transfer)
     .withSender(new Address(address))
     .withGasLimit(GAS_LIMIT)
@@ -70,28 +87,10 @@ export async function deposit({ amount, address }: Params) {
   }
 }
 
-export async function requestWithdraw({ amount, address }: Params) {
-  const transfer = TokenTransfer.fungibleFromAmount(
-    SHARE_TOKEN,
-    (amount * BIGINT_UNIT) / 100,
-    2,
+function createNetworkProvider() {
+  return new ProxyNetworkProvider(
+    `https://${NETWORK_ENV}-gateway.multiversx.com`,
   )
-  const transaction = vaultContract.methods
-    .requestWithdraw([])
-    .withSingleESDTTransfer(transfer)
-    .withExplicitReceiver(new Address(address))
-    .withGasLimit(GAS_LIMIT)
-    .withChainID('D')
-    .buildTransaction()
-
-  try {
-    const { error } = await sendTransactions({
-      transactions: [transaction],
-    })
-    return !error
-  } catch (error) {
-    return false
-  }
 }
 
 function createVaultContract() {
@@ -111,5 +110,5 @@ async function executeQuery(method: string, args: never[] | undefined) {
     queryResponse,
     interaction.getEndpoint(),
   )
-  return typedBundle.values[0].valueOf() / BIGINT_UNIT
+  return typedBundle.values[0].valueOf()
 }

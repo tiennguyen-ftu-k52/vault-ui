@@ -1,30 +1,36 @@
 import { Button, notification } from 'antd'
 import { deposit } from '../../../../api/vaultContract'
 import styles from './index.module.scss'
+import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
 
 interface Props {
   address: string
   amount: string
-  assetBalance: number
+  balance: number
 }
 
-function DepositButton({ address, amount, assetBalance }: Props) {
+function DepositButton({ address, amount, balance }: Props) {
+  const { trackTransaction } = useTrackTransaction()
+
   async function handleSubmit() {
     const numAmount = Number(amount)
-    if (numAmount > assetBalance) {
+    if (numAmount > balance) {
       notification.error({
-        message: 'Error',
-        description: 'Insufficient balance',
+        message: 'Insufficient balance',
       })
     } else {
-      const success = await deposit({
+      const txId = await deposit({
         address,
         amount: numAmount,
       })
-      if (!success) {
+      if (!txId) {
         notification.error({
-          message: 'Error',
-          description: 'Deposit failed',
+          message: 'Deposit failed',
+        })
+      } else {
+        trackTransaction({
+          id: txId,
+          message: `Deposit ${numAmount} DAI successfully`,
         })
       }
     }
