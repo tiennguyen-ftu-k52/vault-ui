@@ -18,7 +18,6 @@ function NumberInput({ value, onChange, placeholder, className }: Props) {
     }
   }
 
-  // '.' at the end or only '-' in the input box.
   const handleBlur = () => {
     let valueTemp = value
     if (value.charAt(value.length - 1) === '.') {

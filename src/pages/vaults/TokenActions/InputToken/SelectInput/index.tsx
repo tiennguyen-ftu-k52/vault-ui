@@ -14,7 +14,6 @@ function SelectToken({ options, className, ...rest }: Props) {
     <Select
       className={cs(styles.select, className)}
       bordered={false}
-      labelInValue
       options={options.map((opt) => ({
         value: opt.value,
         label: (
