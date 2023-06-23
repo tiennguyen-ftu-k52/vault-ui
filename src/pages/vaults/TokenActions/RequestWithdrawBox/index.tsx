@@ -7,6 +7,8 @@ import RequestWithdrawButton from '../RequestWithdrawButton'
 import styles from './index.module.scss'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
 import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
+import TokenBlackIcon from '../../../../assets/icons/token-head-black.png'
+import TokenColorIcon from '../../../../assets/icons/token-head-color.png'
 
 interface Props {
   address: string
@@ -24,13 +26,28 @@ function RequestWithdrawBox({ address, withdrawRequestsData }: Props) {
   return (
     <Space size={24} direction="vertical">
       <InputToken
-        title="Withdraw"
+        title="Redeem"
         amount={amount}
         balance={balance}
         setAmount={setAmount}
+        tokenOptions={[
+          {
+            label: 'tvDAI',
+            value: 'tvdai',
+            icon: TokenBlackIcon,
+          },
+        ]}
       />
 
-      <PreviewResult amount={amount} title="Get" />
+      <PreviewResult
+        amount={amount}
+        title="Get"
+        tokenOption={{
+          label: 'DAI',
+          value: 'dai',
+          icon: TokenColorIcon,
+        }}
+      />
 
       <RequestWithdrawButton
         address={address}

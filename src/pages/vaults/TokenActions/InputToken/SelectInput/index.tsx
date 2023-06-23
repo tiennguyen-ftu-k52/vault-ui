@@ -1,32 +1,33 @@
 import { Select, SelectProps } from 'antd'
+import cs from 'classnames'
 import { ReactComponent as ArrowDownIcon } from '../../../../../assets/icons/arrow-down.svg'
-import TokenHeadColorIcon from '../../../../../assets/icons/token-head-color.png'
-import styles from './index.module.scss'
 import DisplayToken from '../../DisplayToken'
+import { SelectOption } from '../../../../../interfaces/select'
+import styles from './index.module.scss'
 
-const OPTIONS = [
-  {
-    value: 'dai',
-    label: (
-      <DisplayToken
-        className={styles.displayToken}
-        text={'DAI'}
-        icon={TokenHeadColorIcon}
-      />
-    ),
-  },
-]
+interface Props extends SelectProps {
+  options: SelectOption[]
+}
 
-function SelectToken(props: SelectProps) {
+function SelectToken({ options, className, ...rest }: Props) {
   return (
     <Select
-      className={styles.select}
+      className={cs(styles.select, className)}
       bordered={false}
       labelInValue
-      options={OPTIONS}
-      value={OPTIONS[0]}
+      options={options.map((opt) => ({
+        value: opt.value,
+        label: (
+          <DisplayToken
+            className={styles.displayToken}
+            text={opt.label}
+            icon={opt.icon}
+          />
+        ),
+      }))}
+      value={options[0].value}
       suffixIcon={<ArrowDownIcon className={styles.suffixIcon} />}
-      {...props}
+      {...rest}
     />
   )
 }

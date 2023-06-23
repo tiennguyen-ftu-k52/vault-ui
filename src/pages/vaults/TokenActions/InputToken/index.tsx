@@ -4,15 +4,23 @@ import NumberInput from './NumberInput'
 import PercentageBar from './PercentageBar'
 import { formatNumber } from '../../../../utils/number'
 import styles from './index.module.scss'
+import { SelectOption } from '../../../../interfaces/select'
 
 interface Props {
   amount: string
   title: string
   setAmount: (value: string) => void
   balance: number
+  tokenOptions: SelectOption[]
 }
 
-function InputToken({ amount, title, balance, setAmount }: Props) {
+function InputToken({
+  amount,
+  title,
+  balance,
+  setAmount,
+  tokenOptions,
+}: Props) {
   const percentage = Math.floor((Number(amount) / balance) * 100)
 
   return (
@@ -21,7 +29,7 @@ function InputToken({ amount, title, balance, setAmount }: Props) {
         <div className={styles.leftInputBox}>
           <div className={styles.boxTitle}>{title}</div>
           <div className={styles.boxSubtitle}>
-            <SelectInput />
+            <SelectInput options={tokenOptions} />
           </div>
         </div>
 

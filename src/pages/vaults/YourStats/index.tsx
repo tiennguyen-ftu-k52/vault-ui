@@ -1,5 +1,5 @@
-import TokenHeadGrayIcon from '../../../assets/icons/token-head-gray.png'
-import TokenHeadColorIcon from '../../../assets/icons/token-head-color.png'
+import TokenGrayIcon from '../../../assets/icons/token-head-gray.png'
+import TokenColorIcon from '../../../assets/icons/token-head-color.png'
 import { formatNumber } from '../../../utils/number'
 import { renderFallback } from '../../../utils/common'
 import { useContractQuery } from '../../../hooks/useContractQuery'
@@ -45,26 +45,26 @@ function YourStats() {
         <StatRow
           label="Total deposit & reward"
           value={formatNumber(943392182.92)}
-          icon={TokenHeadGrayIcon}
+          icon={TokenGrayIcon}
         />
         <StatRow
           label="Locked tvDAI"
           value={formatNumber(39218292)}
-          icon={TokenHeadGrayIcon}
+          icon={TokenGrayIcon}
         />
         <StatRow
           label="Total value (DAI)"
           value={renderFallback(
             totalValue !== undefined ? formatNumber(totalValue) : totalValue,
           )}
-          icon={TokenHeadColorIcon}
+          icon={TokenColorIcon}
         />
         <StatRow
           label="Est. Earnings (DAI)"
           value={renderFallback(
             estEarning !== undefined ? formatNumber(estEarning) : estEarning,
           )}
-          icon={TokenHeadColorIcon}
+          icon={TokenColorIcon}
         />
       </div>
     </div>

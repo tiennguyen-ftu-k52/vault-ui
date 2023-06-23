@@ -1,11 +1,13 @@
+import { useState } from 'react'
+import { Space } from 'antd'
 import InputToken from '../InputToken'
 import LockToken from '../LockToken'
 import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import DepositButton from '../DepositButton'
-import { Space } from 'antd'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
-import { useState } from 'react'
+import TokenColorIcon from '../../../../assets/icons/token-head-color.png'
+import TokenGrayIcon from '../../../../assets/icons/token-head-gray.png'
 
 interface Props {
   address: string
@@ -28,11 +30,26 @@ function DepositBox({ address }: Props) {
         title="Deposit"
         balance={balance}
         setAmount={setAmount}
+        tokenOptions={[
+          {
+            label: 'DAI',
+            value: 'dai',
+            icon: TokenColorIcon,
+          },
+        ]}
       />
 
       <LockToken checked={checked} setChecked={setChecked} />
 
-      <PreviewResult amount={amount} title="You receive" />
+      <PreviewResult
+        amount={amount}
+        title="You receive"
+        tokenOption={{
+          label: 'tvDAI',
+          value: 'tvdai',
+          icon: TokenGrayIcon,
+        }}
+      />
 
       <DepositButton
         address={address}

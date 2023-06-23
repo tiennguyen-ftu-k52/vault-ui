@@ -1,18 +1,19 @@
 import { Row, Space } from 'antd'
 import cs from 'classnames'
-import TokenHeadColorGray from '../../../../assets/icons/token-head-gray.svg'
 import styles from './index.module.scss'
 import DisplayToken from '../DisplayToken'
 import { formatCurrency, formatNumber } from '../../../../utils/number'
 import { renderFallback } from '../../../../utils/common'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
+import { SelectOption } from '../../../../interfaces/select'
 
 interface Props {
   amount: string
   title: string
+  tokenOption: SelectOption
 }
 
-function PreviewResult({ amount, title }: Props) {
+function PreviewResult({ amount, title, tokenOption }: Props) {
   const { shareToAssetsPrice } = useContractQuery()
 
   const numAmount = Number(amount)
@@ -27,7 +28,7 @@ function PreviewResult({ amount, title }: Props) {
 
       <Row align="middle" justify="space-between" className={styles.balanceBox}>
         <div className={cs(styles.boxSubTitle, styles.receiveBoxTitle)}>
-          <DisplayToken icon={TokenHeadColorGray} text="DAI" />
+          <DisplayToken icon={tokenOption.icon} text={tokenOption.label} />
         </div>
         <div className={styles.previewResult}>{formatNumber(numAmount)}</div>
       </Row>

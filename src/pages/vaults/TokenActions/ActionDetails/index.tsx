@@ -1,4 +1,4 @@
-import { Divider, Row } from 'antd'
+import { Divider, Row, Space } from 'antd'
 import cs from 'classnames'
 import styles from './index.module.scss'
 
@@ -11,20 +11,34 @@ function ActionDetails({ title }: Props) {
     <div className={styles.detailContainer}>
       <div className={styles.detailHeading}>{title} details</div>
       <Divider style={{ margin: '16px 0' }} />
-      <Row className={styles.detailRow} justify="space-between" align="middle">
-        <span className={styles.detailLabel}>DAI deposit</span>
-        <span className={styles.detailValue}>27342.12 DAI</span>
-      </Row>
-      <Row className={styles.detailRow} justify="space-between" align="middle">
-        <span className={styles.detailLabel}>tvDAI reveice</span>
-        <span className={cs(styles.detailValue, styles.detailValueActive)}>
-          27342.12 tvDAI
-        </span>
-      </Row>
-      <Row className={styles.detailRow} justify="space-between" align="middle">
-        <span className={styles.detailLabel}>Fees</span>
-        <span className={styles.detailValue}>20 DAI</span>
-      </Row>
+      <Space direction="vertical" className={styles.rowContainer}>
+        <Row
+          className={styles.detailRow}
+          justify="space-between"
+          align="middle"
+        >
+          <span className={styles.detailLabel}>DAI deposit</span>
+          <span className={styles.detailValue}>27342.12 DAI</span>
+        </Row>
+        <Row
+          className={styles.detailRow}
+          justify="space-between"
+          align="middle"
+        >
+          <span className={styles.detailLabel}>tvDAI reveice</span>
+          <span className={cs(styles.detailValue, styles.detailValueActive)}>
+            27342.12 tvDAI
+          </span>
+        </Row>
+        <Row
+          className={styles.detailRow}
+          justify="space-between"
+          align="middle"
+        >
+          <span className={styles.detailLabel}>Fees</span>
+          <span className={styles.detailValue}>20 DAI</span>
+        </Row>
+      </Space>
     </div>
   )
 }
