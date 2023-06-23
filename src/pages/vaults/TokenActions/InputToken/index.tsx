@@ -2,9 +2,9 @@ import { Row, Space } from 'antd'
 import SelectInput from './SelectInput'
 import NumberInput from './NumberInput'
 import PercentageBar from './PercentageBar'
-import { formatNumber } from '../../../../utils/number'
+import { formatNumber } from '@utils/number'
 import styles from './index.module.scss'
-import { SelectOption } from '../../../../interfaces/select'
+import { SelectOption } from '@interfaces/select'
 
 interface Props {
   amount: string

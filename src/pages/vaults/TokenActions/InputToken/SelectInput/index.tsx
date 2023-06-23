@@ -1,8 +1,8 @@
 import { Select, SelectProps } from 'antd'
 import cs from 'classnames'
-import { ReactComponent as ArrowDownIcon } from '../../../../../assets/icons/arrow-down.svg'
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down.svg'
 import DisplayToken from '../../DisplayToken'
-import { SelectOption } from '../../../../../interfaces/select'
+import { SelectOption } from '@interfaces/select'
 import styles from './index.module.scss'
 
 interface Props extends SelectProps {

@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query'
 import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks'
 import { Col, Row } from 'antd'
-import vaultGraph from '../../../../../assets/images/vault-graph.svg'
-import ButtonPrimary from '../../../../../components/ButtonPrimary'
-import { getEconomics } from '../../../../../api/network'
-import { Economics } from '../../../../../interfaces/network'
-import { formatNumber } from '../../../../../utils/number'
-import { renderFallback } from '../../../../../utils/common'
+import vaultGraph from '@assets/images/vault-graph.svg'
+import ButtonPrimary from '@components/ButtonPrimary'
+import { getEconomics } from '@api/network'
+import { Economics } from '@interfaces/network'
+import { formatNumber } from '@utils/number'
+import { renderFallback } from '@utils/common'
 import styles from './index.module.scss'
 
 function VaultFlow() {

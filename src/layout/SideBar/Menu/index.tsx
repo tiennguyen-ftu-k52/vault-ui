@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Row } from 'antd'
 import { Graph, MagicStar, Strongbox } from 'iconsax-react'
-import { ReactComponent as TradeIconDefault } from '../../../assets/icons/trade.svg'
-import { ReactComponent as TradeIconActive } from '../../../assets/icons/trade-active.svg'
-import { COLORS } from '../../../constants/colors'
+import { ReactComponent as TradeIconDefault } from '@assets/icons/trade.svg'
+import { ReactComponent as TradeIconActive } from '@assets/icons/trade-active.svg'
+import { COLORS } from '@constants/colors'
 import MenuItem from './MenuItem'
 
 const items = [

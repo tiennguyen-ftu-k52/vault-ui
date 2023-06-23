@@ -1,5 +1,5 @@
-import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '../constants/contract'
-import { WalletToken } from '../interfaces/wallet'
+import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '@constants/contract'
+import { WalletToken } from '@interfaces/wallet'
 
 export function formatWalletAddress(address: string) {
   return `${address.slice(0, 10)}...${address.slice(-4)}`

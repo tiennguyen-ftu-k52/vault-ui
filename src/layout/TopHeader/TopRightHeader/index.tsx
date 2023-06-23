@@ -1,6 +1,6 @@
 import { Row, Space } from 'antd'
 import { Clock, Setting2 } from 'iconsax-react'
-import ButtonIcon from '../../../components/ButtonIcon'
+import ButtonIcon from '@components/ButtonIcon'
 import ConnectWallet from './ConnectWallet'
 
 function TopRightHeader() {

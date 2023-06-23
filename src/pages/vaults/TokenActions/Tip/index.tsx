@@ -1,5 +1,5 @@
 import { Divider, Row } from 'antd'
-import { ReactComponent as ArrowDownIcon } from '../../../../assets/icons/arrow-down.svg'
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down.svg'
 import styles from './index.module.scss'
 
 interface Props {

@@ -1,8 +1,8 @@
 import { Col, Row } from 'antd'
 import styles from './index.module.scss'
-import { renderFallback } from '../../../../../utils/common'
-import { formatNumber, formatPercentage } from '../../../../../utils/number'
-import { useContractQuery } from '../../../../../hooks/useContractQuery'
+import { renderFallback } from '@utils/common'
+import { formatNumber, formatPercentage } from '@utils/number'
+import { useContractQuery } from '@hooks/useContractQuery'
 
 function StatCol({ label, value }: { label: string; value: string }) {
   return (

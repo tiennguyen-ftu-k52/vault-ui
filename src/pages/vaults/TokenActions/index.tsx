@@ -6,7 +6,7 @@ import ActionTabs from './ActionTabs'
 import DepositBox from './DepositBox'
 import styles from './index.module.scss'
 import RequestWithdrawBox from './RequestWithdrawBox'
-import { UseWithdrawRequests } from '../../../hooks/useWithdrawRequests'
+import { UseWithdrawRequests } from '@hooks/useWithdrawRequests'
 
 const TAB_ITEMS = [
   {

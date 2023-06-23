@@ -5,9 +5,9 @@ import {
 } from '@multiversx/sdk-dapp/hooks/account'
 import { logout } from '@multiversx/sdk-dapp/utils'
 import { Dropdown, MenuProps } from 'antd'
-import { formatWalletAddress } from '../../../../utils/wallet'
-import ButtonPrimary from '../../../../components/ButtonPrimary'
-import { ReactComponent as ArrowDownIcon } from '../../../../assets/icons/arrow-down-white.svg'
+import { formatWalletAddress } from '@utils/wallet'
+import ButtonPrimary from '@components/ButtonPrimary'
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down-white.svg'
 import styles from './index.module.scss'
 
 const items: MenuProps['items'] = [

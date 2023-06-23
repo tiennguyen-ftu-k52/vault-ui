@@ -4,7 +4,7 @@ import cs from 'classnames'
 import VaultOverview from './VaultOverview'
 import YourRequest from './YourRequest'
 import styles from './index.module.scss'
-import { UseWithdrawRequests } from '../../../hooks/useWithdrawRequests'
+import { UseWithdrawRequests } from '@hooks/useWithdrawRequests'
 
 const TAB_ITEMS = [
   {

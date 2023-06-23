@@ -1,8 +1,8 @@
-import TokenGrayIcon from '../../../assets/icons/token-head-gray.png'
-import TokenColorIcon from '../../../assets/icons/token-head-color.png'
-import { formatNumber } from '../../../utils/number'
-import { renderFallback } from '../../../utils/common'
-import { useContractQuery } from '../../../hooks/useContractQuery'
+import TokenGrayIcon from '@assets/icons/token-head-gray.png'
+import TokenColorIcon from '@assets/icons/token-head-color.png'
+import { formatNumber } from '@utils/number'
+import { renderFallback } from '@utils/common'
+import { useContractQuery } from '@hooks/useContractQuery'
 import styles from './index.module.scss'
 
 function StatRow({

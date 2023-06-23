@@ -1,5 +1,5 @@
 import { Spin } from 'antd'
-import { useLoading } from '../../hooks/useLoading'
+import { useLoading } from '@hooks/useLoading'
 import styles from './index.module.scss'
 
 function GlobalLoading() {

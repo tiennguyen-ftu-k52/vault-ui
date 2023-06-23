@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { convertSecondsToString } from '../../utils/dateTime'
+import { convertSecondsToString } from '@utils/dateTime'
 import styles from './index.module.scss'
-import { renderFallback } from '../../utils/common'
+import { renderFallback } from '@utils/common'
 
 interface Props {
   seconds: number

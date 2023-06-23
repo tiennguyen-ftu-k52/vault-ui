@@ -7,9 +7,9 @@ import {
 } from '@multiversx/sdk-core'
 import { sendTransactions } from '@multiversx/sdk-dapp/services/transactions'
 import { ProxyNetworkProvider } from '@multiversx/sdk-network-providers'
-import abiJson from '../assets/vault.abi.json'
-import { CONTRACT_ADDRESS, GAS_LIMIT, NETWORK_ENV } from '../constants/network'
-import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '../constants/contract'
+import abiJson from '@assets/vault.abi.json'
+import { CONTRACT_ADDRESS, GAS_LIMIT, NETWORK_ENV } from '@constants/network'
+import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '@constants/contract'
 
 const vaultContract = createVaultContract(CONTRACT_ADDRESS)
 const networkProvider = createNetworkProvider()

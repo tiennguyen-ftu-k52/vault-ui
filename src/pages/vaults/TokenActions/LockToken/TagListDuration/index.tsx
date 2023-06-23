@@ -1,4 +1,4 @@
-import { ReactComponent as IconClear } from '../../../../../assets/icons/icon-clear.svg'
+import { ReactComponent as IconClear } from '@assets/icons/icon-clear.svg'
 import styles from './index.module.scss'
 
 function TagListDuration() {

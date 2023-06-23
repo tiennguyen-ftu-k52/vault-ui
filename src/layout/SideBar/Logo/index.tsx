@@ -1,4 +1,4 @@
-import { ReactComponent as LogoIcon } from '../../../assets/images/logo.svg'
+import { ReactComponent as LogoIcon } from '@assets/images/logo.svg'
 import styles from './index.module.scss'
 
 function Logo() {

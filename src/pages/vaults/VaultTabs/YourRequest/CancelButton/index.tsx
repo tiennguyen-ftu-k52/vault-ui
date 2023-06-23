@@ -1,10 +1,10 @@
 import { Button, notification } from 'antd'
-import { cancelWithdraw } from '../../../../../api/vaultContract'
+import { cancelWithdraw } from '@api/vaultContract'
 import styles from './index.module.scss'
-import { useTrackTransaction } from '../../../../../hooks/useTrackTransaction'
-import { useContractQuery } from '../../../../../hooks/useContractQuery'
-import { useWithdrawRequests } from '../../../../../hooks/useWithdrawRequests'
-import { useLoading } from '../../../../../hooks/useLoading'
+import { useTrackTransaction } from '@hooks/useTrackTransaction'
+import { useContractQuery } from '@hooks/useContractQuery'
+import { useWithdrawRequests } from '@hooks/useWithdrawRequests'
+import { useLoading } from '@hooks/useLoading'
 
 interface Props {
   address: string

@@ -5,10 +5,10 @@ import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import RequestWithdrawButton from '../RequestWithdrawButton'
 import styles from './index.module.scss'
-import { useContractQuery } from '../../../../hooks/useContractQuery'
-import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
-import TokenBlackIcon from '../../../../assets/icons/token-head-black.png'
-import TokenColorIcon from '../../../../assets/icons/token-head-color.png'
+import { useContractQuery } from '@hooks/useContractQuery'
+import { UseWithdrawRequests } from '@hooks/useWithdrawRequests'
+import TokenBlackIcon from '@assets/icons/token-head-black.png'
+import TokenColorIcon from '@assets/icons/token-head-color.png'
 
 interface Props {
   address: string

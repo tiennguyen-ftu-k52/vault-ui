@@ -1,4 +1,4 @@
-import { useWithdrawRequests } from '../../hooks/useWithdrawRequests'
+import { useWithdrawRequests } from '@hooks/useWithdrawRequests'
 import Layout from '../../layout'
 import OrderBox from './TokenActions'
 import VaultOverview from './VaultTabs'

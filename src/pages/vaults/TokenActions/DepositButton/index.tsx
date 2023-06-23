@@ -1,9 +1,9 @@
 import { Button, notification } from 'antd'
-import { deposit } from '../../../../api/vaultContract'
+import { deposit } from '@api/vaultContract'
 import styles from './index.module.scss'
-import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
-import { useContractQuery } from '../../../../hooks/useContractQuery'
-import { useLoading } from '../../../../hooks/useLoading'
+import { useTrackTransaction } from '@hooks/useTrackTransaction'
+import { useContractQuery } from '@hooks/useContractQuery'
+import { useLoading } from '@hooks/useLoading'
 
 interface Props {
   address: string

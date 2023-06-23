@@ -5,9 +5,9 @@ import LockToken from '../LockToken'
 import PreviewResult from '../PreviewResult'
 import Tip from '../Tip'
 import DepositButton from '../DepositButton'
-import { useContractQuery } from '../../../../hooks/useContractQuery'
-import TokenColorIcon from '../../../../assets/icons/token-head-color.png'
-import TokenGrayIcon from '../../../../assets/icons/token-head-gray.png'
+import { useContractQuery } from '@hooks/useContractQuery'
+import TokenColorIcon from '@assets/icons/token-head-color.png'
+import TokenGrayIcon from '@assets/icons/token-head-gray.png'
 
 interface Props {
   address: string

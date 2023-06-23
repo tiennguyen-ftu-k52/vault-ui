@@ -2,10 +2,10 @@ import { Row, Space } from 'antd'
 import cs from 'classnames'
 import styles from './index.module.scss'
 import DisplayToken from '../DisplayToken'
-import { formatCurrency, formatNumber } from '../../../../utils/number'
-import { renderFallback } from '../../../../utils/common'
-import { useContractQuery } from '../../../../hooks/useContractQuery'
-import { SelectOption } from '../../../../interfaces/select'
+import { formatCurrency, formatNumber } from '@utils/number'
+import { renderFallback } from '@utils/common'
+import { useContractQuery } from '@hooks/useContractQuery'
+import { SelectOption } from '@interfaces/select'
 
 interface Props {
   amount: string

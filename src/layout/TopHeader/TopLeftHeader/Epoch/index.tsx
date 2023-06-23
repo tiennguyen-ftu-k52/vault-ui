@@ -2,15 +2,12 @@ import { useQuery } from 'react-query'
 import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks'
 import EpochRow from './EpochRow'
 import styles from './index.module.scss'
-import { getStats } from '../../../../api/network'
-import { Stats } from '../../../../interfaces/network'
-import { renderFallback } from '../../../../utils/common'
-import {
-  calcDurationTimestamps,
-  calcEpochTimeLeft,
-} from '../../../../utils/network'
-import CountDown from '../../../../components/CountDown'
-import { formatNumber } from '../../../../utils/number'
+import { getStats } from '@api/network'
+import { Stats } from '@interfaces/network'
+import { renderFallback } from '@utils/common'
+import { calcDurationTimestamps, calcEpochTimeLeft } from '@utils/network'
+import CountDown from '@components/CountDown'
+import { formatNumber } from '@utils/number'
 import { Space } from 'antd'
 
 function Epoch() {

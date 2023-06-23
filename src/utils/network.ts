@@ -1,4 +1,4 @@
-import { DATETIME_FORMAT } from '../constants/dateTime'
+import { DATETIME_FORMAT } from '@constants/dateTime'
 import { dateFormatter } from './dateTime'
 
 interface Params {

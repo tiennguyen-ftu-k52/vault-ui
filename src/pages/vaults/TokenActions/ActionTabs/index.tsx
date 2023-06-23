@@ -1,6 +1,6 @@
 import { Space } from 'antd'
 import cs from 'classnames'
-import { ReactComponent as AutoRefreshIcon } from '../../../../assets/icons/auto-refresh.svg'
+import { ReactComponent as AutoRefreshIcon } from '@assets/icons/auto-refresh.svg'
 import styles from './index.module.scss'
 
 interface TabItem {
