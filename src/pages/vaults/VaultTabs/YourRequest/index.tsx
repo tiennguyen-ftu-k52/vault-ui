@@ -1,6 +1,9 @@
+import { useMemo, useState } from 'react'
 import { Space, Table } from 'antd'
-import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down.svg'
+import cs from 'classnames'
+// import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down.svg'
 import { ReactComponent as SortDownIcon } from '@assets/icons/sort-down.svg'
+import { ReactComponent as SortDownActiveIcon } from '@assets/icons/sort-down-active.svg'
 import styles from './index.module.scss'
 import { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks'
 import { WithdrawRequest } from '@interfaces/withdraw'
@@ -14,34 +17,109 @@ import { UseWithdrawRequests } from '@hooks/useWithdrawRequests'
 
 const { Column } = Table
 
+enum SortDirection {
+  ASC = 'ascend',
+  DESC = 'descend',
+}
+
 interface DataType extends WithdrawRequest {
   key: React.Key
 }
 
-function ColumnTitle({ text, icon }: { text: string; icon?: React.ReactNode }) {
+interface ColumnTitleProps {
+  text: string
+  icon?: React.ReactNode
+  sortDirection?: SortDirection
+  setSortDirection?: (direction: SortDirection | undefined) => void
+}
+
+function ColumnTitle({
+  text,
+  icon,
+  sortDirection,
+  setSortDirection,
+}: ColumnTitleProps) {
   return (
-    <div className={styles.titleContainer}>
+    <div
+      className={cs(
+        styles.titleContainer,
+        setSortDirection && styles.clickable,
+      )}
+      onClick={() => {
+        if (setSortDirection) {
+          if (sortDirection === undefined) {
+            setSortDirection(SortDirection.DESC)
+          } else if (sortDirection === SortDirection.DESC) {
+            setSortDirection(SortDirection.ASC)
+          } else {
+            setSortDirection(undefined)
+          }
+        }
+      }}
+    >
       <span className={styles.titleText}>{text}</span>
-      {icon && <span className={styles.titleIcon}>{icon}</span>}
+      {icon && (
+        <span
+          className={cs(
+            styles.titleIcon,
+            sortDirection && styles.active,
+            sortDirection === SortDirection.ASC && styles.asc,
+          )}
+        >
+          {icon}
+        </span>
+      )}
     </div>
   )
 }
 
-interface Props {
+function formatRequest(req: WithdrawRequest) {
+  return {
+    ...req,
+    key: req.ts,
+  }
+}
+
+interface YourRequestProps {
   withdrawRequestsData: UseWithdrawRequests
 }
 
-function YourRequest({ withdrawRequestsData }: Props) {
+function YourRequest({ withdrawRequestsData }: YourRequestProps) {
+  const [sortedByTs, setSortedByTs] = useState<SortDirection | undefined>(
+    undefined,
+  )
+  const [sortedByAmount, setSortedByAmount] = useState<
+    SortDirection | undefined
+  >(undefined)
+
   const { address } = useGetAccountInfo()
   const { withdrawRequests } = withdrawRequestsData
 
-  const tableData: DataType[] | undefined = withdrawRequests?.map((req) => ({
-    key: req.ts,
-    ts: req.ts,
-    amount: req.amount,
-    status: req.status,
-    epoch: req.epoch,
-  }))
+  const tableData: DataType[] | undefined = useMemo(() => {
+    if (!withdrawRequests) return undefined
+
+    if (sortedByTs) {
+      return withdrawRequests
+        .slice()
+        .sort((a, b) =>
+          sortedByTs === SortDirection.ASC ? a.ts - b.ts : b.ts - a.ts,
+        )
+        .map(formatRequest)
+    }
+
+    if (sortedByAmount) {
+      return withdrawRequests
+        .slice()
+        .sort((a, b) =>
+          sortedByAmount === SortDirection.ASC
+            ? a.amount - b.amount
+            : b.amount - a.amount,
+        )
+        .map(formatRequest)
+    }
+
+    return withdrawRequests.map(formatRequest)
+  }, [withdrawRequests, sortedByTs, sortedByAmount])
 
   return (
     <Table className={styles.table} dataSource={tableData || []}>
@@ -49,7 +127,9 @@ function YourRequest({ withdrawRequestsData }: Props) {
         title={
           <ColumnTitle
             text="Time"
-            icon={<SortDownIcon width={20} height={20} />}
+            icon={sortedByTs ? <SortDownActiveIcon /> : <SortDownIcon />}
+            sortDirection={sortedByTs}
+            setSortDirection={setSortedByTs}
           />
         }
         dataIndex="ts"
@@ -72,7 +152,7 @@ function YourRequest({ withdrawRequestsData }: Props) {
         title={
           <ColumnTitle
             text="Type"
-            icon={<ArrowDownIcon width={20} height={20} />}
+            // icon={<ArrowDownIcon width={20} height={20} />}
           />
         }
         dataIndex="status"
@@ -85,7 +165,9 @@ function YourRequest({ withdrawRequestsData }: Props) {
         title={
           <ColumnTitle
             text="Amount"
-            icon={<SortDownIcon width={20} height={20} />}
+            icon={sortedByAmount ? <SortDownActiveIcon /> : <SortDownIcon />}
+            sortDirection={sortedByAmount}
+            setSortDirection={setSortedByAmount}
           />
         }
         dataIndex="amount"
@@ -106,7 +188,7 @@ function YourRequest({ withdrawRequestsData }: Props) {
         title={
           <ColumnTitle
             text="Status"
-            icon={<ArrowDownIcon width={20} height={20} />}
+            // icon={<ArrowDownIcon width={20} height={20} />}
           />
         }
         dataIndex="status"
