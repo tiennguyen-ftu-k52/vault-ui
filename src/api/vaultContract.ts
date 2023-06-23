@@ -11,7 +11,7 @@ import abiJson from '../assets/vault.abi.json'
 import { CONTRACT_ADDRESS, GAS_LIMIT, NETWORK_ENV } from '../constants/network'
 import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '../constants/contract'
 
-const vaultContract = createVaultContract()
+const vaultContract = createVaultContract(CONTRACT_ADDRESS)
 const networkProvider = createNetworkProvider()
 
 export async function getCollatRatio() {
@@ -156,11 +156,11 @@ function createNetworkProvider() {
   )
 }
 
-function createVaultContract() {
+function createVaultContract(contractAddress: string) {
   const vaultAbi = AbiRegistry.create(abiJson)
 
   return new SmartContract({
-    address: new Address(CONTRACT_ADDRESS),
+    address: new Address(contractAddress),
     abi: vaultAbi,
   })
 }

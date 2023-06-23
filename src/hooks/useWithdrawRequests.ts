@@ -7,6 +7,7 @@ export interface UseWithdrawRequests {
   withdrawRequests: WithdrawRequest[] | undefined
   refetchWithdrawRequests: () => void
   fetchingWithdrawRequests: boolean
+  loadingWithdrawRequests: boolean
 }
 
 export function useWithdrawRequests(): UseWithdrawRequests {
@@ -15,11 +16,17 @@ export function useWithdrawRequests(): UseWithdrawRequests {
     data: withdrawRequests,
     refetch: refetchWithdrawRequests,
     isFetching: fetchingWithdrawRequests,
+    isLoading: loadingWithdrawRequests,
   } = useQuery<WithdrawRequest[]>({
     queryKey: ['withdrawRequests'],
     queryFn: () => getWithdrawRequests(address),
     enabled: !!address,
   })
 
-  return { withdrawRequests, refetchWithdrawRequests, fetchingWithdrawRequests }
+  return {
+    withdrawRequests,
+    refetchWithdrawRequests,
+    fetchingWithdrawRequests,
+    loadingWithdrawRequests,
+  }
 }

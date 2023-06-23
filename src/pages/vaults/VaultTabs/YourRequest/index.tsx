@@ -33,7 +33,7 @@ interface Props {
 
 function YourRequest({ withdrawRequestsData }: Props) {
   const { address } = useGetAccountInfo()
-  const { withdrawRequests, fetchingWithdrawRequests } = withdrawRequestsData
+  const { withdrawRequests } = withdrawRequestsData
 
   const tableData: DataType[] | undefined = withdrawRequests?.map((req) => ({
     key: req.ts,
@@ -44,11 +44,7 @@ function YourRequest({ withdrawRequestsData }: Props) {
   }))
 
   return (
-    <Table
-      className={styles.table}
-      dataSource={tableData || []}
-      loading={fetchingWithdrawRequests}
-    >
+    <Table className={styles.table} dataSource={tableData || []}>
       <Column
         title={
           <ColumnTitle

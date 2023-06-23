@@ -8,11 +8,19 @@
   padding: 16px;
   background-color: $color-yellow;
   border-radius: 10px;
-  height: 44px;
+  height: 52px;
   width: 100%;
   color: $color-white-pure;
+  border-color: $color-yellow;
   font-weight: 700;
   font-size: 18px;
   line-height: 23px;
   letter-spacing: 0.05em;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-white-pure !important;
+    border-color: $color-yellow !important;
+  }
 }

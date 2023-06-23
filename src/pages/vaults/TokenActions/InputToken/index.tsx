@@ -25,7 +25,11 @@ function InputToken({
 
   return (
     <Space size={24} direction="vertical">
-      <Row align="middle" justify="space-between">
+      <Row
+        align="middle"
+        justify="space-between"
+        className={styles.boxContainer}
+      >
         <div className={styles.leftInputBox}>
           <div className={styles.boxTitle}>{title}</div>
           <div className={styles.boxSubtitle}>
@@ -34,12 +38,7 @@ function InputToken({
         </div>
 
         <div className={styles.rightInputBox}>
-          <NumberInput
-            placeholder="0"
-            value={amount}
-            onChange={setAmount}
-            className={styles.select}
-          />
+          <NumberInput placeholder="0" value={amount} onChange={setAmount} />
           <div className={styles.value}>
             <span className={styles.balanceLabel}>Balance: </span>
             <a className={styles.balanceValue}>{formatNumber(balance)}</a>

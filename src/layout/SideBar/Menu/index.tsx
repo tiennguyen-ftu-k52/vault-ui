@@ -11,32 +11,32 @@ const items = [
     id: 'trade',
     label: 'Trade',
     icon: {
-      default: <TradeIconDefault />,
-      active: <TradeIconActive />,
+      default: <TradeIconDefault width={20} height={20} />,
+      active: <TradeIconActive width={20} height={20} />,
     },
   },
   {
     id: 'vault',
     label: 'Vault',
     icon: {
-      default: <Strongbox />,
-      active: <Strongbox variant="Bold" color={COLORS.IRIS_100} />,
+      default: <Strongbox size={20} />,
+      active: <Strongbox variant="Bold" color={COLORS.IRIS_100} size={20} />,
     },
   },
   {
     id: 'statistic',
     label: 'Statistic',
     icon: {
-      default: <Graph />,
-      active: <Graph variant="Bold" color={COLORS.IRIS_100} />,
+      default: <Graph size={20} />,
+      active: <Graph variant="Bold" color={COLORS.IRIS_100} size={20} />,
     },
   },
   {
     id: 'nft',
     label: 'NFT',
     icon: {
-      default: <MagicStar />,
-      active: <MagicStar variant="Bold" color={COLORS.IRIS_100} />,
+      default: <MagicStar size={20} />,
+      active: <MagicStar variant="Bold" color={COLORS.IRIS_100} size={20} />,
     },
   },
 ]

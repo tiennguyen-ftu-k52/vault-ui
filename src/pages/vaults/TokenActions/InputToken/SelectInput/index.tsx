@@ -9,20 +9,14 @@ interface Props extends SelectProps {
   options: SelectOption[]
 }
 
-function SelectToken({ options, className, ...rest }: Props) {
+function SelectInput({ options, className, ...rest }: Props) {
   return (
     <Select
       className={cs(styles.select, className)}
       bordered={false}
       options={options.map((opt) => ({
         value: opt.value,
-        label: (
-          <DisplayToken
-            className={styles.displayToken}
-            text={opt.label}
-            icon={opt.icon}
-          />
-        ),
+        label: <DisplayToken text={opt.label} icon={opt.icon} />,
       }))}
       value={options[0].value}
       suffixIcon={<ArrowDownIcon className={styles.suffixIcon} />}
@@ -31,4 +25,4 @@ function SelectToken({ options, className, ...rest }: Props) {
   )
 }
 
-export default SelectToken
+export default SelectInput

@@ -9,7 +9,15 @@
   background-color: $color-green-pure;
   border-radius: 10px;
   color: $color-white-pure;
+  border-color: $color-green-pure;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.05em;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color-white-pure !important;
+    border-color: $color-green-pure !important;
+  }
 }

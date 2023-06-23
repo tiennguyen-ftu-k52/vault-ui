@@ -8,19 +8,13 @@
   line-height: 15px;
   border-radius: 12px;
   color: $color-white-pure;
+  border-color: $color-black-default;
   height: 36px;
 
   &:hover,
   &:focus,
   &:active {
-    svg {
-      path {
-        stroke: #4096ff;
-      }
-
-      rect {
-        fill: #4096ff;
-      }
-    }
+    color: $color-white-pure !important;
+    border-color: $color-black-default !important;
   }
 }

@@ -2,18 +2,19 @@
 
 .select {
   padding: 0;
+  width: 109px;
 
   :global {
     .ant-select-arrow {
       top: 36%;
+    }
+
+    .ant-select-selector {
+      padding: 0 !important;
     }
   }
 }
 
 .suffixIcon {
   fill: $color-black-default;
-}
-
-.displayToken {
-  margin-right: 16px;
 }

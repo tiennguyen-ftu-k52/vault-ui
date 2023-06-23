@@ -4,8 +4,7 @@
   height: 64px;
   background: $color-blue-bg;
   border-radius: 8px;
-  padding: 10px 8px 8px;
-  width: 100%;
+  padding: 10px 8px 8px 8px;
   font-weight: 500;
   font-size: 24px;
   line-height: 30px;
@@ -13,4 +12,6 @@
   text-align: right;
   letter-spacing: 0.05em;
   color: $color-black-disabled;
+  border-color: $color-blue-bg;
+  width: 187px;
 }

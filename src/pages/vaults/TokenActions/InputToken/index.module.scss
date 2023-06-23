@@ -1,7 +1,7 @@
 @import '../../../../styles/variables.scss';
 
-.inputBoxContainer {
-  width: 100%;
+.boxContainer {
+  flex-wrap: nowrap;
 }
 
 .boxTitle {
@@ -12,17 +12,13 @@
 }
 
 .boxSubtitle {
-  margin-left: -16px;
+  margin-left: 0;
 }
 
 .rightInputBox {
   flex: 1;
   text-align: right;
   margin-left: 20px;
-}
-
-.select {
-  width: 100%;
 }
 
 .balance {
