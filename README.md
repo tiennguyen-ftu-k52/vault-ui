@@ -5,4 +5,4 @@ npm run dev
 ```
 
 ## Notes
-Only support connect with the Extension Wallet.
+Only support connecting with the Extension Wallet.
