@@ -28,6 +28,14 @@ function RequestWithdrawButton({
 
   async function handleSubmit() {
     const numAmount = Number(amount)
+
+    if (numAmount <= 0) {
+      notification.error({
+        message: 'Invalid amount',
+      })
+      return
+    }
+
     if (numAmount > balance) {
       notification.error({
         message: 'Error',

@@ -20,6 +20,13 @@ function DepositButton({ address, amount, balance, onSubmit }: Props) {
   async function handleSubmit() {
     const numAmount = Number(amount)
 
+    if (numAmount <= 0) {
+      notification.error({
+        message: 'Invalid amount',
+      })
+      return
+    }
+
     if (numAmount > balance) {
       notification.error({
         message: 'Insufficient balance',
