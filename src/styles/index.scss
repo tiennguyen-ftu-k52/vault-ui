@@ -1,6 +1,7 @@
 @import './fonts';
 
 body {
+  -webkit-font-smoothing: subpixel-antialiased;
   font-family: 'Samsung Sharp Sans', sans-serif;
   font-weight: 500;
   font-size: 12px;
