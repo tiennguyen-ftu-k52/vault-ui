@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react'
 import { Space, Table } from 'antd'
-import cs from 'classnames'
 // import { ReactComponent as ArrowDownIcon } from '@assets/icons/arrow-down.svg'
 import { ReactComponent as SortDownIcon } from '@assets/icons/sort-down.svg'
 import { ReactComponent as SortDownActiveIcon } from '@assets/icons/sort-down-active.svg'
@@ -14,63 +13,12 @@ import { WITHDRAW_STATUS } from '@constants/withdraw'
 import WithdrawButton from './WithdrawButton'
 import CancelButton from './CancelButton'
 import { UseWithdrawRequests } from '@hooks/useWithdrawRequests'
+import ColumnTitle, { SortDirection } from './ColumnTitle'
 
 const { Column } = Table
 
-enum SortDirection {
-  ASC = 'ascend',
-  DESC = 'descend',
-}
-
 interface DataType extends WithdrawRequest {
   key: React.Key
-}
-
-interface ColumnTitleProps {
-  text: string
-  icon?: React.ReactNode
-  sortDirection?: SortDirection
-  setSortDirection?: (direction: SortDirection | undefined) => void
-}
-
-function ColumnTitle({
-  text,
-  icon,
-  sortDirection,
-  setSortDirection,
-}: ColumnTitleProps) {
-  return (
-    <div
-      className={cs(
-        styles.titleContainer,
-        setSortDirection && styles.clickable,
-      )}
-      onClick={() => {
-        if (setSortDirection) {
-          if (sortDirection === undefined) {
-            setSortDirection(SortDirection.DESC)
-          } else if (sortDirection === SortDirection.DESC) {
-            setSortDirection(SortDirection.ASC)
-          } else {
-            setSortDirection(undefined)
-          }
-        }
-      }}
-    >
-      <span className={styles.titleText}>{text}</span>
-      {icon && (
-        <span
-          className={cs(
-            styles.titleIcon,
-            sortDirection && styles.active,
-            sortDirection === SortDirection.ASC && styles.asc,
-          )}
-        >
-          {icon}
-        </span>
-      )}
-    </div>
-  )
 }
 
 function formatRequest(req: WithdrawRequest) {
