@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../../hooks/useTrackTransaction'
 import { useContractQuery } from '../../../../../hooks/useContractQuery'
 import { useWithdrawRequests } from '../../../../../hooks/useWithdrawRequests'
+import { useLoading } from '../../../../../hooks/useLoading'
 
 interface Props {
   address: string
@@ -15,8 +16,10 @@ function WithdrawButton({ address, amount, ts }: Props) {
   const { trackTransaction } = useTrackTransaction()
   const { refetchContractQueries } = useContractQuery()
   const { refetchWithdrawRequests } = useWithdrawRequests()
+  const { setLoadingState } = useLoading()
 
   async function handleSubmit() {
+    setLoadingState(true)
     const txId = await withdraw({
       address,
       amount,
@@ -24,16 +27,25 @@ function WithdrawButton({ address, amount, ts }: Props) {
     })
     if (!txId) {
       notification.error({
-        message: 'Error',
-        description: 'Request withdraw failed',
+        message: 'Request withdraw failed',
       })
+      setLoadingState(false)
     } else {
       trackTransaction({
         id: txId,
-        message: `Withdraw ${amount} DAI successfully`,
-        successAction() {
+        onSuccess() {
+          notification.success({
+            message: `Withdraw ${amount} DAI successfully`,
+          })
+          setLoadingState(false)
           refetchContractQueries()
           refetchWithdrawRequests()
+        },
+        onError() {
+          notification.error({
+            message: 'Request withdraw failed',
+          })
+          setLoadingState(false)
         },
       })
     }

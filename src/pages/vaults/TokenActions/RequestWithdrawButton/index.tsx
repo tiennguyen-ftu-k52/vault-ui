@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
 import { UseWithdrawRequests } from '../../../../hooks/useWithdrawRequests'
+import { useLoading } from '../../../../hooks/useLoading'
 
 interface Props {
   address: string
@@ -23,6 +24,7 @@ function RequestWithdrawButton({
   const { trackTransaction } = useTrackTransaction()
   const { refetchContractQueries } = useContractQuery()
   const { refetchWithdrawRequests } = withdrawRequestsData
+  const { setLoadingState } = useLoading()
 
   async function handleSubmit() {
     const numAmount = Number(amount)
@@ -31,27 +33,38 @@ function RequestWithdrawButton({
         message: 'Error',
         description: 'Insufficient balance',
       })
-    } else {
-      const txId = await requestWithdraw({
-        address,
-        amount: numAmount,
+      return
+    }
+
+    setLoadingState(true)
+    const txId = await requestWithdraw({
+      address,
+      amount: numAmount,
+    })
+    if (!txId) {
+      notification.error({
+        message: 'Request withdraw failed',
       })
-      if (!txId) {
-        notification.error({
-          message: 'Error',
-          description: 'Request withdraw failed',
-        })
-      } else {
-        trackTransaction({
-          id: txId,
-          message: `Request withdraw ${numAmount} DAI successfully`,
-          successAction() {
-            refetchContractQueries()
-            refetchWithdrawRequests()
-          },
-        })
-        onSubmit && onSubmit()
-      }
+      setLoadingState(false)
+    } else {
+      trackTransaction({
+        id: txId,
+        onSuccess() {
+          notification.success({
+            message: `Request withdraw ${numAmount} DAI successfully`,
+          })
+          setLoadingState(false)
+          refetchContractQueries()
+          refetchWithdrawRequests()
+        },
+        onError() {
+          notification.error({
+            message: 'Request withdraw failed',
+          })
+          setLoadingState(false)
+        },
+      })
+      onSubmit && onSubmit()
     }
   }
 

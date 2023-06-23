@@ -131,7 +131,9 @@ function YourRequest({ withdrawRequestsData }: Props) {
                   ts={req.ts}
                 />
               )}
-              {[WITHDRAW_STATUS.WAITING, WITHDRAW_STATUS.EXPIRED] && (
+              {[WITHDRAW_STATUS.WAITING, WITHDRAW_STATUS.EXPIRED].includes(
+                status,
+              ) && (
                 <CancelButton
                   address={address}
                   amount={req.amount}

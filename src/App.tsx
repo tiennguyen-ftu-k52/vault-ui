@@ -6,6 +6,8 @@ import VaultPage from './pages/vaults'
 import { COLORS } from './constants/colors'
 import { NETWORK_ENV } from './constants/network'
 import './api/vaultContract'
+import { LoadingProvider } from './contexts/loading'
+import GlobalLoading from './components/GlobalLoading'
 
 const queryClient = new QueryClient()
 
@@ -22,8 +24,11 @@ function App() {
     >
       <QueryClientProvider client={queryClient}>
         <DappProvider environment={NETWORK_ENV}>
-          <VaultPage />
-          <SignTransactionsModals />
+          <LoadingProvider>
+            <GlobalLoading />
+            <SignTransactionsModals />
+            <VaultPage />
+          </LoadingProvider>
         </DappProvider>
       </QueryClientProvider>
     </ConfigProvider>

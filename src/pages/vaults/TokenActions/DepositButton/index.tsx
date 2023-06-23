@@ -3,6 +3,7 @@ import { deposit } from '../../../../api/vaultContract'
 import styles from './index.module.scss'
 import { useTrackTransaction } from '../../../../hooks/useTrackTransaction'
 import { useContractQuery } from '../../../../hooks/useContractQuery'
+import { useLoading } from '../../../../hooks/useLoading'
 
 interface Props {
   address: string
@@ -14,30 +15,46 @@ interface Props {
 function DepositButton({ address, amount, balance, onSubmit }: Props) {
   const { trackTransaction } = useTrackTransaction()
   const { refetchContractQueries } = useContractQuery()
+  const { setLoadingState } = useLoading()
 
   async function handleSubmit() {
     const numAmount = Number(amount)
+
     if (numAmount > balance) {
       notification.error({
         message: 'Insufficient balance',
       })
-    } else {
-      const txId = await deposit({
-        address,
-        amount: numAmount,
+      return
+    }
+
+    setLoadingState(true)
+    const txId = await deposit({
+      address,
+      amount: numAmount,
+    })
+    if (!txId) {
+      notification.error({
+        message: 'Deposit failed',
       })
-      if (!txId) {
-        notification.error({
-          message: 'Deposit failed',
-        })
-      } else {
-        trackTransaction({
-          id: txId,
-          message: `Deposit ${numAmount} DAI successfully`,
-          successAction: refetchContractQueries,
-        })
-        onSubmit && onSubmit()
-      }
+      setLoadingState(false)
+    } else {
+      trackTransaction({
+        id: txId,
+        onSuccess() {
+          notification.success({
+            message: `Deposit ${numAmount} DAI successfully`,
+          })
+          setLoadingState(false)
+          refetchContractQueries()
+        },
+        onError() {
+          notification.error({
+            message: 'Deposit failed',
+          })
+          setLoadingState(false)
+        },
+      })
+      onSubmit && onSubmit()
     }
   }
 

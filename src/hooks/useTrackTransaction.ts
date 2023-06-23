@@ -3,12 +3,12 @@ import {
   useTrackTransactionStatus,
   UseTrackTransactionStatusArgsType,
 } from '@multiversx/sdk-dapp/hooks'
-import { notification } from 'antd'
 
 interface Session {
   id: UseTrackTransactionStatusArgsType['transactionId']
-  message?: string
-  successAction?: () => void
+  onSuccess?: () => void
+  onError?: () => void
+  onCancelled?: () => void
 }
 
 export function useTrackTransaction() {
@@ -17,15 +17,22 @@ export function useTrackTransaction() {
   useTrackTransactionStatus({
     transactionId: tx?.id || null,
     onSuccess() {
-      if (tx?.message) {
-        notification.success({
-          message: tx.message,
-        })
-      }
-      if (tx?.successAction) {
-        tx.successAction()
-      }
       setTx(null)
+      if (tx?.onSuccess) {
+        tx.onSuccess()
+      }
+    },
+    onFail() {
+      setTx(null)
+      if (tx?.onError) {
+        tx.onError()
+      }
+    },
+    onCancelled() {
+      setTx(null)
+      if (tx?.onCancelled) {
+        tx.onCancelled()
+      }
     },
   })
 
