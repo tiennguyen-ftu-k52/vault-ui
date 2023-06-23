@@ -32,7 +32,7 @@ function VaultFlow() {
         <ButtonPrimary className={styles.button}>DEPOSIT</ButtonPrimary>
       </Col>
       <Col xs={24} md={12}>
-        <img src={vaultGraph} alt="vault graph" />
+        <img className={styles.graph} src={vaultGraph} alt="vault graph" />
       </Col>
     </Row>
   )

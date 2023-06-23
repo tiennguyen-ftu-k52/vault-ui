@@ -2,14 +2,14 @@
 
 .container {
   background-color: $color-white-pure;
-  padding: 36px 24px;
+  padding: 0px 24px 36px 24px;
   box-shadow: 0px 4px 25px rgba(241, 241, 255, 0.5);
   border-radius: 16px;
   flex: 1;
 }
 
 .tabContainer {
-  margin-bottom: 36px;
+  padding: 36px 0px;
 }
 
 .tab {
@@ -17,6 +17,7 @@
   font-size: 18px;
   line-height: 23px;
   color: $color-black-disabled;
+  letter-spacing: 0.9px;
 
   &.tabActive {
     color: $color-iris-100;

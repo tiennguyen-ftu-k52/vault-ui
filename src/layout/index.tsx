@@ -14,8 +14,11 @@ function Layout({ children }: Props) {
   return (
     <AntLayout className={styles.layout}>
       <SideBar />
-      <AntLayout>
-        <TopHeader />
+      <AntLayout className={styles.main}>
+        <div className={styles.background} />
+        <div className={styles.topHeader}>
+          <TopHeader />
+        </div>
         <Content className={styles.content}>{children}</Content>
       </AntLayout>
     </AntLayout>

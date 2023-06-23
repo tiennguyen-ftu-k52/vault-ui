@@ -2,9 +2,39 @@
 
 .layout {
   min-height: 100vh;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  background: rgba(248, 248, 255, 0.8);
+  backdrop-filter: blur(25px);
+}
+
+.topHeader {
+  z-index: 1;
+}
+
+.main {
+  position: relative;
+  height: 100%;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+  background-image: url('layout-background-img.png'),
+    linear-gradient(lightgray, lightgray);
+  background-position: 50%;
+  background-size: cover, auto;
+  background-repeat: no-repeat, repeat;
+  background-color: rgba(253, 253, 255, 0.8);
+  border: none;
 }
 
 .content {
-  padding: 0 22px;
+  padding: 0 24px;
   background-color: $color-main-bg;
+  z-index: 1;
 }
