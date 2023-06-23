@@ -1,3 +1,15 @@
+export interface Assets {
+  website: string
+  description: string
+  status: 'inactive'
+  pngUrl: string
+  svgUrl: string
+  ledgerSignature: string
+  lockedAccounts: string
+  extraTokens: [string]
+  preferredRankAlgorithm: string
+}
+
 export interface WalletToken {
   type: string
   identifier: string
@@ -11,17 +23,7 @@ export interface WalletToken {
   initialMinted: string
   decimals: number
   isPaused: boolean
-  assets: {
-    website: string
-    description: string
-    status: 'inactive'
-    pngUrl: string
-    svgUrl: string
-    ledgerSignature: string
-    lockedAccounts: string
-    extraTokens: [string]
-    preferredRankAlgorithm: string
-  }
+  assets: Assets
   transactions: number
   accounts: number
   canUpgrade: boolean

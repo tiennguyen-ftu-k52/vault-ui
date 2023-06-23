@@ -34,64 +34,6 @@ $space-l3: 24px;
 $space-xl: 32px;
 $space-xxl: 64px;
 
-$header-height: 64px;
-$header-height-mobile: 46px;
-
-/* Breakpoints */
-$breakpoint-xsmall: 480px;
-$breakpoint-small: 600px;
-$breakpoint-medium: 768px;
-$breakpoint-large: 992px;
-$breakpoint-xlarge: 1200px;
-$breakpoint-content-max: 1366px;
-
-$breakpoints: (
-  xsmall down:
-    (
-      max-width: $breakpoint-xsmall - 1,
-    ),
-  xsmall up:
-    (
-      min-width: $breakpoint-xsmall,
-    ),
-  small down:
-    (
-      max-width: $breakpoint-small - 1,
-    ),
-  small up:
-    (
-      min-width: $breakpoint-small,
-    ),
-  medium down:
-    (
-      max-width: $breakpoint-medium - 1,
-    ),
-  medium up:
-    (
-      min-width: $breakpoint-medium,
-    ),
-  large down:
-    (
-      max-width: $breakpoint-large - 1,
-    ),
-  large up:
-    (
-      min-width: $breakpoint-large,
-    ),
-  xlarge down:
-    (
-      max-width: $breakpoint-xlarge - 1,
-    ),
-  xlarge up:
-    (
-      min-width: $breakpoint-xlarge,
-    ),
-  content max:
-    (
-      min-width: $breakpoint-content-max,
-    )
-);
-
 $container-max-width: 1376px;
 
 $transition-duration: 0.3s;

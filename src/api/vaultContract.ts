@@ -13,7 +13,6 @@ import { ASSET_TOKEN, BIGINT_UNIT, SHARE_TOKEN } from '../constants/contract'
 
 const vaultContract = createVaultContract()
 const networkProvider = createNetworkProvider()
-console.log(vaultContract.methods)
 
 export async function getCollatRatio() {
   const value = await executeQuery('getCollateralizationP', [])
